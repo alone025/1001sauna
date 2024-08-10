@@ -9,7 +9,7 @@ function App(): JSX.Element {
       <Navbar />
 
       <Wrapper>
-        <div className="md:mt-[32px] md:mx-[20px] xl:mx-0">
+        <div className="sm:mt-[32px] sm:mx-[20px] xl:mx-0">
           <Main_banner />
         </div>
         <Main />
