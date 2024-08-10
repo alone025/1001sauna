@@ -1,7 +1,7 @@
 import Wrapper from '../../layout/wrapper'
 import Banner from '../../ui/banner/banner'
 
-function Navbar() {
+function Navbar(): JSX.Element {
 	return (
 		<>
 			<Banner />

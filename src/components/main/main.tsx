@@ -1,7 +1,7 @@
 import Wrapper from '../../layout/wrapper'
 import Main_banner from '../../ui/banner/main_banner'
 
-function Main() {
+function Main(): JSX.Element{
 	return (
 		<>
 			<Wrapper>
