@@ -1,6 +1,8 @@
 import Wrapper from '../../layout/wrapper'
 import Main_banner from '../../ui/banner/main_banner'
 
+
+
 function Main(): JSX.Element{
 	return (
 		<>
@@ -9,6 +11,7 @@ function Main(): JSX.Element{
 					<Main_banner />
 				</div>
 				<div></div>
+				
 			</Wrapper>
 		</>
 	)
