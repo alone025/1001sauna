@@ -1,7 +1,16 @@
+import React, { useState } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
 import Wrapper from '../../layout/wrapper'
 import Banner from '../../ui/banner/banner'
+import LoginModal from '../../ui/modal/loginModal'
 
-function Navbar(): JSX.Element {
+const Navbar: React.FC = (): JSX.Element => {
+	const [openModal, setOpenModal] = useState<boolean>(false)
+
+	const handleOpenModal = (): void => {
+		setOpenModal(!openModal)
+	}
+
 	return (
 		<>
 			<Banner />
@@ -45,7 +54,10 @@ function Navbar(): JSX.Element {
 									/>
 									<img src='/assets/like.png' alt='404' className='lg:hidden' />
 
-									<button className='bg-[#FF7A01] rounded-[12px] flex items-center justify-center text-[white] px-[56px] py-[8px] h-[48px]'>
+									<button
+										className='bg-[#FF7A01] rounded-[12px] flex items-center justify-center text-[white] px-[56px] py-[8px] h-[48px]'
+										onClick={handleOpenModal}
+									>
 										Войти
 									</button>
 								</div>
@@ -61,6 +73,7 @@ function Navbar(): JSX.Element {
 								src='/assets/user.png'
 								alt='user'
 								className='w-[25px] md:hidden'
+								onClick={handleOpenModal}
 							/>
 							<img
 								src='/assets/menu.png'
@@ -71,6 +84,27 @@ function Navbar(): JSX.Element {
 					</div>
 				</Wrapper>
 			</div>
+
+			<AnimatePresence>
+				{openModal && (
+					<motion.div
+						className='fixed inset-0 w-screen h-screen bg-[#00000093] z-[999] flex justify-center items-center'
+						initial={{ opacity: 0 }}
+						animate={{ opacity: 1 }}
+						exit={{ opacity: 0 }}
+						transition={{ duration: 0.3 }}
+					>
+						<motion.div
+							initial={{ y: 50, opacity: 0 }}
+							animate={{ y: 0, opacity: 1 }}
+							exit={{ y: 50, opacity: 0 }}
+							transition={{ duration: 0.3 }}
+						>
+							<LoginModal closeModal={handleOpenModal} />
+						</motion.div>
+					</motion.div>
+				)}
+			</AnimatePresence>
 		</>
 	)
 }
