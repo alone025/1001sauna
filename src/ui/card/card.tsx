@@ -32,7 +32,7 @@ function UnLiked ({opn}: {opn: boolean}){
 export default function CardUI({data}: Props) {
 
 
-const [opnL, setOpnL] = useState<boolean>(false)
+  const [opnL, setOpnL] = useState<boolean>(false)
 
 
 
@@ -53,7 +53,7 @@ const [opnL, setOpnL] = useState<boolean>(false)
         </div>
       </div>
       <Stack mt='29' spacing='2' paddingX={4} >
-        <Heading size='md'>{data.name}</Heading>
+        <Heading size='md' className='mb-4 text-[#3B4255] text-[14px] md:text-[16px] lg:text-[18px] xl:text-[20px] font-OpenSans font-semibold leading-[120%] ' >{data.name}</Heading>
         <div className="liked-icons flex flex-row flex-wrap justify-between gap-2 items-center">
             <div className="like-dislike flex flex-wrap flex-row gap-3">
                 <label htmlFor="icon-like" className='flex flex-row items-center relative -left-[7px]' >
