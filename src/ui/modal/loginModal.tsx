@@ -18,7 +18,7 @@ const LoginModal: React.FC<LoginModalProps> = ({ closeModal }): JSX.Element => {
 						className='cursor-pointer absolute top-3 right-3 md:top-[8%] md:right-[5%]'
 						onClick={closeModal}
 					/>
-				</div>
+				</div> 
 				<div className='flex flex-col w-full gap-[20px]'>
 					<input
 						type='text'
