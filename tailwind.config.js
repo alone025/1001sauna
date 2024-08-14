@@ -5,6 +5,7 @@ export default {
 		extend: {
 			fontFamily: {
 				OpenSans: ['Open Sans', 'sans-serif'],
+				Inter: ["Inter", 'sans-serif']
 			},
 		},
 	},
