@@ -3,12 +3,18 @@ import { motion, AnimatePresence } from 'framer-motion'
 import Wrapper from '../../layout/wrapper'
 import Banner from '../../ui/banner/banner'
 import LoginModal from '../../ui/modal/loginModal'
+import MobNavbar from './mobNavbar'
 
 const Navbar: React.FC = (): JSX.Element => {
 	const [openModal, setOpenModal] = useState<boolean>(false)
+	const [openNav, setOpenNav] = useState<boolean>(false)
 
 	const handleOpenModal = (): void => {
 		setOpenModal(!openModal)
+	}
+
+	const handleOpenNav = (): void => {
+		setOpenNav(!openNav)
 	}
 
 	return (
@@ -79,6 +85,7 @@ const Navbar: React.FC = (): JSX.Element => {
 								src='/assets/menu.png'
 								alt='menu'
 								className='md:hidden w-[25px]'
+								onClick={handleOpenNav}
 							/>
 						</div>
 					</div>
@@ -101,6 +108,30 @@ const Navbar: React.FC = (): JSX.Element => {
 							transition={{ duration: 0.3 }}
 						>
 							<LoginModal closeModal={handleOpenModal} />
+						</motion.div>
+					</motion.div>
+				)}
+			</AnimatePresence>
+
+			<AnimatePresence>
+				{openNav && (
+					<motion.div
+						className='fixed inset-0 w-screen h-screen bg-[#00000093] z-[998]'
+						initial={{ opacity: 0 }}
+						animate={{ opacity: 1 }}
+						exit={{ opacity: 0 }}
+						transition={{ duration: 0.3 }}
+						onClick={handleOpenNav}
+					>
+						<motion.div
+							initial={{ x: '100%' }}
+							animate={{ x: 0 }}
+							exit={{ x: '100%' }}
+							transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+							className='fixed inset-y-0 right-0 w-[100%] bg-[#343434] shadow-lg z-[1000]'
+							onClick={e => e.stopPropagation()}
+						>
+							<MobNavbar closeNav={handleOpenNav} />
 						</motion.div>
 					</motion.div>
 				)}
