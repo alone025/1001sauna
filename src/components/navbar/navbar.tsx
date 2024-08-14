@@ -4,20 +4,18 @@ import Wrapper from "../../layout/wrapper";
 import Banner from "../../ui/banner/banner";
 import LoginModal from "../../ui/modal/loginModal";
 import { CloseButton } from "@chakra-ui/react";
-import {  SearchIcon } from "@chakra-ui/icons";
+import { SearchIcon } from "@chakra-ui/icons";
 import MobNavbar from "./mobNavbar";
 
 const Navbar: React.FC = (): JSX.Element => {
   const [openModal, setOpenModal] = useState<boolean>(false);
   const [searchBar, setSearchBar] = useState<boolean>(false);
-  const [searchOpen, setSearchOpen] = useState<boolean>(false)
-  const [openNav, setOpenNav] = useState<boolean>(false)
-
+  const [searchOpen, setSearchOpen] = useState<boolean>(false);
+  const [openNav, setOpenNav] = useState<boolean>(false);
 
   const handleOpenModal = (): void => {
     setOpenModal(!openModal);
   };
-
 
   const handleSetSearchBar = (e: React.ChangeEvent<HTMLInputElement>): void => {
     const em = e.target.value;
@@ -29,8 +27,8 @@ const Navbar: React.FC = (): JSX.Element => {
   };
 
   const handleOpenNav = (): void => {
-	setOpenNav(!openNav)
-}
+    setOpenNav(!openNav);
+  };
 
   return (
     <>
@@ -114,7 +112,7 @@ const Navbar: React.FC = (): JSX.Element => {
                     src="/assets/search.png"
                     alt="404"
                     className="lg:hidden"
-					onClick={()=> setSearchOpen(!searchOpen)}
+                    onClick={() => setSearchOpen(!searchOpen)}
                   />
                   <img src="/assets/like.png" alt="404" className="lg:hidden" />
 
@@ -126,69 +124,71 @@ const Navbar: React.FC = (): JSX.Element => {
                   </button>
                 </div>
 
-				{searchOpen && (
-					 <div className="fixed left-0 top-0 w-full h-screen bg-white z-30 block lg:hidden p-[30px]">
-					<div className="top-content mb-9 flex justify-between gap-2 items-center">
-					<h3 className="text-[20px] text-[#3B4255] font-OpenSans font-semibold">Поиск бани/сауны</h3>
-					<CloseButton size='lg' onClick={()=> setSearchOpen(false)} />
-
-
-					</div>
-					 <input
-					   type="text"
-					   onChange={(e) => handleSetSearchBar(e)}
-					   placeholder="Поиск по названию"
-					   className="border outline-none border-[#CCC] px-[9px] py-[12px]  rounded-[4px] relative w-full pr-[50px]"
-					 />
-					 <img
-					   src="/assets/search.png"
-					   alt="search icon"
-					   className="absolute top-[118px] right-11 cursor-pointer"
-					   
-					 />
-					 {searchBar && (
-					   <AnimatePresence>
-						 <motion.div
-						   initial={{ opacity: 0, y: 3 }}
-						   animate={{ opacity: 1 }}
-						   exit={{ opacity: 0 }}
-						   className="bottom-searchBar max-h-[250px] w-full shadow-md bg-white mt-2 overflow-y-auto overscroll-contain"
-						 >
-						   <div className="card hover:bg-[#F8F8F8] px-3 py-[9px] cursor-pointer ">
-							 <p className="text-[14px] text-[#3B4255] font-Inter font-normal line-clamp-1 text-ellipsis">
-							   100 градусов позитива, Сауна, банька
-							 </p>
-						   </div>
-						   <div className="card hover:bg-[#F8F8F8] px-3 py-[9px] cursor-pointer ">
-							 <p className="text-[14px] text-[#3B4255] font-Inter font-normal line-clamp-1 text-ellipsis">
-							   Escalada SPA, Баня
-							 </p>
-						   </div>
-						   <div className="card hover:bg-[#F8F8F8] px-3 py-[9px] cursor-pointer ">
-							 <p className="text-[14px] text-[#3B4255] font-Inter font-normal line-clamp-1 text-ellipsis">
-							   Labrehab, Банный дом
-							 </p>
-						   </div>
-						   <div className="card hover:bg-[#F8F8F8] px-3 py-[9px] cursor-pointer ">
-							 <p className="text-[14px] text-[#3B4255] font-Inter font-normal line-clamp-1 text-ellipsis">
-							   SIBERIA, банный комплекс
-							 </p>
-						   </div>
-						   <div className="card hover:bg-[#F8F8F8] px-3 py-[9px] cursor-pointer ">
-							 <p className="text-[14px] text-[#3B4255] font-Inter font-normal line-clamp-1 text-ellipsis">
-							   Silverpool, Баня с зоной отдыха
-							 </p>
-						   </div>
-						   <div className="card hover:bg-[#F8F8F8] px-3 py-[9px] cursor-pointer ">
-							 <p className="text-[14px] text-[#3B4255] font-Inter font-normal line-clamp-1 text-ellipsis">
-							   The Banya, банный комплекс
-							 </p>
-						   </div>
-						 </motion.div>
-					   </AnimatePresence>
-					 )}
-				   </div>
-				)}
+                {searchOpen && (
+                  <div className="fixed left-0 top-0 w-full h-screen bg-white z-30 block lg:hidden p-[30px]">
+                    <div className="top-content mb-9 flex justify-between gap-2 items-center">
+                      <h3 className="text-[20px] text-[#3B4255] font-OpenSans font-semibold">
+                        Поиск бани/сауны
+                      </h3>
+                      <CloseButton
+                        size="lg"
+                        onClick={() => setSearchOpen(false)}
+                      />
+                    </div>
+                    <input
+                      type="text"
+                      onChange={(e) => handleSetSearchBar(e)}
+                      placeholder="Поиск по названию"
+                      className="border outline-none border-[#CCC] px-[9px] py-[12px]  rounded-[4px] relative w-full pr-[50px]"
+                    />
+                    <img
+                      src="/assets/search.png"
+                      alt="search icon"
+                      className="absolute top-[118px] right-11 cursor-pointer"
+                    />
+                    {searchBar && (
+                      <AnimatePresence>
+                        <motion.div
+                          initial={{ opacity: 0, y: 3 }}
+                          animate={{ opacity: 1 }}
+                          exit={{ opacity: 0 }}
+                          className="bottom-searchBar max-h-[250px] w-full shadow-md bg-white mt-2 overflow-y-auto overscroll-contain"
+                        >
+                          <div className="card hover:bg-[#F8F8F8] px-3 py-[9px] cursor-pointer ">
+                            <p className="text-[14px] text-[#3B4255] font-Inter font-normal line-clamp-1 text-ellipsis">
+                              100 градусов позитива, Сауна, банька
+                            </p>
+                          </div>
+                          <div className="card hover:bg-[#F8F8F8] px-3 py-[9px] cursor-pointer ">
+                            <p className="text-[14px] text-[#3B4255] font-Inter font-normal line-clamp-1 text-ellipsis">
+                              Escalada SPA, Баня
+                            </p>
+                          </div>
+                          <div className="card hover:bg-[#F8F8F8] px-3 py-[9px] cursor-pointer ">
+                            <p className="text-[14px] text-[#3B4255] font-Inter font-normal line-clamp-1 text-ellipsis">
+                              Labrehab, Банный дом
+                            </p>
+                          </div>
+                          <div className="card hover:bg-[#F8F8F8] px-3 py-[9px] cursor-pointer ">
+                            <p className="text-[14px] text-[#3B4255] font-Inter font-normal line-clamp-1 text-ellipsis">
+                              SIBERIA, банный комплекс
+                            </p>
+                          </div>
+                          <div className="card hover:bg-[#F8F8F8] px-3 py-[9px] cursor-pointer ">
+                            <p className="text-[14px] text-[#3B4255] font-Inter font-normal line-clamp-1 text-ellipsis">
+                              Silverpool, Баня с зоной отдыха
+                            </p>
+                          </div>
+                          <div className="card hover:bg-[#F8F8F8] px-3 py-[9px] cursor-pointer ">
+                            <p className="text-[14px] text-[#3B4255] font-Inter font-normal line-clamp-1 text-ellipsis">
+                              The Banya, банный комплекс
+                            </p>
+                          </div>
+                        </motion.div>
+                      </AnimatePresence>
+                    )}
+                  </div>
+                )}
               </div>
             </div>
             <div className="flex items-center gap-[15px]">
@@ -198,10 +198,11 @@ const Navbar: React.FC = (): JSX.Element => {
 				onClick={()=> setSearchOpen(true)} 
                 className="w-[25px] md:hidden"
               /> */}
-			  <SearchIcon
-			  fontSize={20}
-				onClick={()=> setSearchOpen(true)} 
-                className="w-[25px] md:!hidden" />
+              <SearchIcon
+                fontSize={20}
+                onClick={() => setSearchOpen(true)}
+                className="w-[25px] md:!hidden"
+              />
               <img
                 src="/assets/user.png"
                 alt="user"
@@ -211,98 +212,102 @@ const Navbar: React.FC = (): JSX.Element => {
               <img
                 src="/assets/menu.png"
                 alt="menu"
-				onClick={()=> setOpenNav(true)}
+                onClick={() => setOpenNav(true)}
                 className="md:hidden w-[25px]"
               />
 
-				{searchOpen && (
-					 <div className="fixed left-0 top-0 w-full h-screen bg-white z-30 block md:hidden px-4 py-7">
-					<div className="top-content mb-7 flex justify-between gap-2 items-center">
-					<h3 className="text-[20px] text-[#3B4255] font-OpenSans font-semibold">Поиск</h3>
-					<CloseButton size='lg' onClick={()=> setSearchOpen(false)} />
-					</div>
-					 <input
-					   type="text"
-					   onChange={(e) => handleSetSearchBar(e)}
-					   placeholder="Поиск по названию"
-					   className="border outline-none border-[#CCC] px-[9px] py-[12px]  rounded-[4px] relative w-full pr-[50px]"
-					 />
-					 <img
-					   src="/assets/search.png"
-					   alt="search icon"
-					   className="absolute top-[108px] right-9 cursor-pointer"
-					   
-					 />
-					 {searchBar && (
-					   <AnimatePresence>
-						 <motion.div
-						   initial={{ opacity: 0, y: 3 }}
-						   animate={{ opacity: 1 }}
-						   exit={{ opacity: 0 }}
-						   className="bottom-searchBar max-h-[250px] w-full bg-white mt-2 overflow-y-auto overscroll-contain"
-						 >
-						   <div className="card hover:bg-[#F8F8F8] px-3 py-[9px] cursor-pointer ">
-							 <p className="text-[14px] text-[#3B4255] font-Inter font-normal line-clamp-1 text-ellipsis">
-							   100 градусов позитива, Сауна, банька
-							 </p>
-						   </div>
-						   <div className="card hover:bg-[#F8F8F8] px-3 py-[9px] cursor-pointer ">
-							 <p className="text-[14px] text-[#3B4255] font-Inter font-normal line-clamp-1 text-ellipsis">
-							   Escalada SPA, Баня
-							 </p>
-						   </div>
-						   <div className="card hover:bg-[#F8F8F8] px-3 py-[9px] cursor-pointer ">
-							 <p className="text-[14px] text-[#3B4255] font-Inter font-normal line-clamp-1 text-ellipsis">
-							   Labrehab, Банный дом
-							 </p>
-						   </div>
-						   <div className="card hover:bg-[#F8F8F8] px-3 py-[9px] cursor-pointer ">
-							 <p className="text-[14px] text-[#3B4255] font-Inter font-normal line-clamp-1 text-ellipsis">
-							   SIBERIA, банный комплекс
-							 </p>
-						   </div>
-						   <div className="card hover:bg-[#F8F8F8] px-3 py-[9px] cursor-pointer ">
-							 <p className="text-[14px] text-[#3B4255] font-Inter font-normal line-clamp-1 text-ellipsis">
-							   Silverpool, Баня с зоной отдыха
-							 </p>
-						   </div>
-						   <div className="card hover:bg-[#F8F8F8] px-3 py-[9px] cursor-pointer ">
-							 <p className="text-[14px] text-[#3B4255] font-Inter font-normal line-clamp-1 text-ellipsis">
-							   The Banya, банный комплекс
-							 </p>
-						   </div>
-						 </motion.div>
-					   </AnimatePresence>
-					 )}
-				   </div>
-				)}
+              {searchOpen && (
+                <div className="fixed left-0 top-0 w-full h-screen bg-white z-30 block md:hidden px-4 py-7">
+                  <div className="top-content mb-7 flex justify-between gap-2 items-center">
+                    <h3 className="text-[20px] text-[#3B4255] font-OpenSans font-semibold">
+                      Поиск
+                    </h3>
+                    <CloseButton
+                      size="lg"
+                      onClick={() => setSearchOpen(false)}
+                    />
+                  </div>
+                  <input
+                    type="text"
+                    onChange={(e) => handleSetSearchBar(e)}
+                    placeholder="Поиск по названию"
+                    className="border outline-none border-[#CCC] px-[9px] py-[12px]  rounded-[4px] relative w-full pr-[50px]"
+                  />
+                  <img
+                    src="/assets/search.png"
+                    alt="search icon"
+                    className="absolute top-[108px] right-9 cursor-pointer"
+                  />
+                  {searchBar && (
+                    <AnimatePresence>
+                      <motion.div
+                        initial={{ opacity: 0, y: 3 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        className="bottom-searchBar max-h-[250px] w-full bg-white mt-2 overflow-y-auto overscroll-contain"
+                      >
+                        <div className="card hover:bg-[#F8F8F8] px-3 py-[9px] cursor-pointer ">
+                          <p className="text-[14px] text-[#3B4255] font-Inter font-normal line-clamp-1 text-ellipsis">
+                            100 градусов позитива, Сауна, банька
+                          </p>
+                        </div>
+                        <div className="card hover:bg-[#F8F8F8] px-3 py-[9px] cursor-pointer ">
+                          <p className="text-[14px] text-[#3B4255] font-Inter font-normal line-clamp-1 text-ellipsis">
+                            Escalada SPA, Баня
+                          </p>
+                        </div>
+                        <div className="card hover:bg-[#F8F8F8] px-3 py-[9px] cursor-pointer ">
+                          <p className="text-[14px] text-[#3B4255] font-Inter font-normal line-clamp-1 text-ellipsis">
+                            Labrehab, Банный дом
+                          </p>
+                        </div>
+                        <div className="card hover:bg-[#F8F8F8] px-3 py-[9px] cursor-pointer ">
+                          <p className="text-[14px] text-[#3B4255] font-Inter font-normal line-clamp-1 text-ellipsis">
+                            SIBERIA, банный комплекс
+                          </p>
+                        </div>
+                        <div className="card hover:bg-[#F8F8F8] px-3 py-[9px] cursor-pointer ">
+                          <p className="text-[14px] text-[#3B4255] font-Inter font-normal line-clamp-1 text-ellipsis">
+                            Silverpool, Баня с зоной отдыха
+                          </p>
+                        </div>
+                        <div className="card hover:bg-[#F8F8F8] px-3 py-[9px] cursor-pointer ">
+                          <p className="text-[14px] text-[#3B4255] font-Inter font-normal line-clamp-1 text-ellipsis">
+                            The Banya, банный комплекс
+                          </p>
+                        </div>
+                      </motion.div>
+                    </AnimatePresence>
+                  )}
+                </div>
+              )}
             </div>
           </div>
         </Wrapper>
       </div>
-	  <AnimatePresence>
-				{openNav && (
-					<motion.div
-						className='fixed inset-0 w-screen h-screen bg-[#00000093] z-[998]'
-						initial={{ opacity: 0 }}
-						animate={{ opacity: 1 }}
-						exit={{ opacity: 0 }}
-						transition={{ duration: 0.3 }}
-						onClick={handleOpenNav}
-					>
-						<motion.div
-							initial={{ x: '100%' }}
-							animate={{ x: 0 }}
-							exit={{ x: '100%' }}
-							transition={{ type: 'spring', stiffness: 300, damping: 30 }}
-							className='fixed inset-y-0 right-0 w-[100%] bg-[#343434] shadow-lg z-[1000]'
-							onClick={e => e.stopPropagation()}
-						>
-							<MobNavbar closeNav={handleOpenNav} />
-						</motion.div>
-					</motion.div>
-				)}
-			</AnimatePresence>
+      <AnimatePresence>
+        {openNav && (
+          <motion.div
+            className="fixed inset-0 w-screen h-screen bg-[#00000093] z-[998]"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            onClick={handleOpenNav}
+          >
+            <motion.div
+              initial={{ x: "100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "100%" }}
+              transition={{ type: "spring", stiffness: 300, damping: 30 }}
+              className="fixed inset-y-0 right-0 w-[100%] bg-[#343434] shadow-lg z-[1000]"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <MobNavbar closeNav={handleOpenNav} />
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
       <AnimatePresence>
         {openModal && (
           <motion.div
