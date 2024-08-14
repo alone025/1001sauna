@@ -12,6 +12,7 @@ const LoginModal: React.FC<LoginModalProps> = ({ closeModal }): JSX.Element => {
 
 	return (
 		<div>
+
 			{
 				typeModal == "sign" ? (
 					<div className='bg-white relative rounded-[24px] w-full sm:w-[468px] h-[408px] border font-OpenSans px-[32px]'>

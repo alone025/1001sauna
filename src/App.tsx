@@ -15,6 +15,7 @@ function App(): JSX.Element {
         </div>
         <Main />
       </Wrapper>
+
       <Footer />
     </>
   );
