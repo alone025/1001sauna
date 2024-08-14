@@ -5,15 +5,19 @@ import Banner from "../../ui/banner/banner";
 import LoginModal from "../../ui/modal/loginModal";
 import { CloseButton } from "@chakra-ui/react";
 import {  SearchIcon } from "@chakra-ui/icons";
+import MobNavbar from "./mobNavbar";
 
 const Navbar: React.FC = (): JSX.Element => {
   const [openModal, setOpenModal] = useState<boolean>(false);
   const [searchBar, setSearchBar] = useState<boolean>(false);
   const [searchOpen, setSearchOpen] = useState<boolean>(false)
+  const [openNav, setOpenNav] = useState<boolean>(false)
+
 
   const handleOpenModal = (): void => {
     setOpenModal(!openModal);
   };
+
 
   const handleSetSearchBar = (e: React.ChangeEvent<HTMLInputElement>): void => {
     const em = e.target.value;
@@ -23,6 +27,10 @@ const Navbar: React.FC = (): JSX.Element => {
       setSearchBar(false);
     }
   };
+
+  const handleOpenNav = (): void => {
+	setOpenNav(!openNav)
+}
 
   return (
     <>
@@ -123,6 +131,8 @@ const Navbar: React.FC = (): JSX.Element => {
 					<div className="top-content mb-9 flex justify-between gap-2 items-center">
 					<h3 className="text-[20px] text-[#3B4255] font-OpenSans font-semibold">Поиск бани/сауны</h3>
 					<CloseButton size='lg' onClick={()=> setSearchOpen(false)} />
+
+
 					</div>
 					 <input
 					   type="text"
@@ -179,7 +189,6 @@ const Navbar: React.FC = (): JSX.Element => {
 					 )}
 				   </div>
 				)}
-
               </div>
             </div>
             <div className="flex items-center gap-[15px]">
@@ -192,7 +201,7 @@ const Navbar: React.FC = (): JSX.Element => {
 			  <SearchIcon
 			  fontSize={20}
 				onClick={()=> setSearchOpen(true)} 
-                className="w-[25px] md:hidden" />
+                className="w-[25px] md:!hidden" />
               <img
                 src="/assets/user.png"
                 alt="user"
@@ -202,6 +211,7 @@ const Navbar: React.FC = (): JSX.Element => {
               <img
                 src="/assets/menu.png"
                 alt="menu"
+				onClick={()=> setOpenNav(true)}
                 className="md:hidden w-[25px]"
               />
 
@@ -270,7 +280,29 @@ const Navbar: React.FC = (): JSX.Element => {
           </div>
         </Wrapper>
       </div>
-
+	  <AnimatePresence>
+				{openNav && (
+					<motion.div
+						className='fixed inset-0 w-screen h-screen bg-[#00000093] z-[998]'
+						initial={{ opacity: 0 }}
+						animate={{ opacity: 1 }}
+						exit={{ opacity: 0 }}
+						transition={{ duration: 0.3 }}
+						onClick={handleOpenNav}
+					>
+						<motion.div
+							initial={{ x: '100%' }}
+							animate={{ x: 0 }}
+							exit={{ x: '100%' }}
+							transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+							className='fixed inset-y-0 right-0 w-[100%] bg-[#343434] shadow-lg z-[1000]'
+							onClick={e => e.stopPropagation()}
+						>
+							<MobNavbar closeNav={handleOpenNav} />
+						</motion.div>
+					</motion.div>
+				)}
+			</AnimatePresence>
       <AnimatePresence>
         {openModal && (
           <motion.div
