@@ -1,10 +1,20 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Home_bez_gorod from "./home_bez_gorod";
 import Home_gorod from "./home_gorod";
 
 function Home(): JSX.Element {
-  const [city, setCity] = useState("Moskva");
+  const [city, setCity] = useState("");
+
+
+
+
+  useEffect(() => {
+    const storedData = localStorage.getItem('cityGorod');
+    if (storedData) {
+      setCity(storedData);
+    }
+  }, []);
 
   return (
     <div className="main-home-page mt-8 mx-4 sm:mx-[20px] xl:mx-0">

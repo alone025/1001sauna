@@ -10,3 +10,7 @@
 .nav {
 	box-shadow: 0px 6px 12px 0px rgba(0, 0, 0, 0.06);
 }
+
+#noscroll::-webkit-scrollbar {
+	display: none;
+  }

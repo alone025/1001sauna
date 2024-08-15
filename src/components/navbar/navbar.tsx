@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Wrapper from "../../layout/wrapper";
 import Banner from "../../ui/banner/banner";
@@ -6,16 +6,30 @@ import LoginModal from "../../ui/modal/loginModal";
 import { CloseButton } from "@chakra-ui/react";
 import { SearchIcon } from "@chakra-ui/icons";
 import MobNavbar from "./mobNavbar";
+import City_regionsModal from "../../ui/modal/city_regionsModal";
+import { useModalContextNew } from "../../context/modalContext";
 
 const Navbar: React.FC = (): JSX.Element => {
   const [openModal, setOpenModal] = useState<boolean>(false);
   const [searchBar, setSearchBar] = useState<boolean>(false);
   const [searchOpen, setSearchOpen] = useState<boolean>(false);
   const [openNav, setOpenNav] = useState<boolean>(false);
+  const [city, setCity] = useState<string>('')
+  // const [cityModal , setCityModal] = useState<boolean>(false)
+
+  const { isNavbarModalOpen, closeNavbarModal, openNavbarModal } = useModalContextNew();
+
 
   const handleOpenModal = (): void => {
     setOpenModal(!openModal);
   };
+
+  const saveDataToLocalStorage = (value: string) => {
+    localStorage.setItem('cityGorod', value);
+    setCity(value);
+    window.location.reload()
+  };
+
 
   const handleSetSearchBar = (e: React.ChangeEvent<HTMLInputElement>): void => {
     const em = e.target.value;
@@ -26,9 +40,20 @@ const Navbar: React.FC = (): JSX.Element => {
     }
   };
 
+  useEffect(() => {
+    const storedData = localStorage.getItem('cityGorod');
+    if (storedData) {
+      setCity(storedData);
+    }
+  }, []);
+
+
   const handleOpenNav = (): void => {
     setOpenNav(!openNav);
   };
+
+
+
 
   return (
     <>
@@ -43,9 +68,12 @@ const Navbar: React.FC = (): JSX.Element => {
                   alt=""
                   className="cursor-pointer w-[105px] md:w-[172px]"
                 />
-                <div className="md:flex items-center gap-2 cursor-pointer lg:w-[350px] hidden">
+                <div className="md:flex items-center gap-2 cursor-pointer lg:w-[350px] hidden" onClick={()=>openNavbarModal()}>
                   <img src="/assets/map.png" alt="" />
-                  <h4 className="text-[#3B4255] lg:w-full">Выбрать город</h4>
+                 
+                  {
+                    city ? ( <h4 className="text-[#3B4255] lg:w-full">{city}</h4>):( <h4 className="text-[#3B4255] lg:w-full">Выбрать город</h4>)
+                  }
                 </div>
               </div>
               <div className="relative w-full hidden lg:block">
@@ -324,6 +352,31 @@ const Navbar: React.FC = (): JSX.Element => {
               transition={{ duration: 0.3 }}
             >
               <LoginModal closeModal={handleOpenModal} />
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+
+      <AnimatePresence>
+        {isNavbarModalOpen && (
+          <motion.div
+            className="fixed inset-0 w-screen h-screen bg-[#00000093] z-[998]"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            onClick={handleOpenNav}
+          >
+            <motion.div
+              initial={{ y: "0%" }}
+              animate={{ y: 0 }}
+              exit={{ y: "0%" }}
+              transition={{ type: "spring", stiffness: 300, damping: 30 }}
+              className="fixed inset-y-0 right-0 w-[100%] bg-[#343434] shadow-lg z-[1000]"
+              onClick={(e) => e.stopPropagation()}
+            >
+            <City_regionsModal setCity={(e)=> saveDataToLocalStorage(e)} setModal={()=> closeNavbarModal()} />
             </motion.div>
           </motion.div>
         )}
