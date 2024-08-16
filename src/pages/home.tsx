@@ -5,20 +5,25 @@ import Home_gorod from "./home_gorod";
 
 function Home(): JSX.Element {
   const [city, setCity] = useState("");
-
-
-
+  const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
-    const storedData = localStorage.getItem('cityGorod');
+    setLoading(true);
+    const storedData = localStorage.getItem("cityGorod");
     if (storedData) {
       setCity(storedData);
-    }
+      setLoading(false);
+    } 
+    setLoading(false);
   }, []);
 
   return (
     <div className="main-home-page mt-8 mx-4 sm:mx-[20px] xl:mx-0">
-      {!city ? <Home_bez_gorod /> : <Home_gorod city={city} />}
+      {loading ? (
+        <p></p>
+      ) : (
+        <> {!city ? <Home_bez_gorod /> : <Home_gorod city={city} />}</>
+      )}
     </div>
   );
 }
