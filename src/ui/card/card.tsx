@@ -11,13 +11,13 @@ function IconLike (){
     return(
         <Image src='/assets/like-icon.svg' alt='like-icon' />
     )
-} 
+}
 
 function DisLike (){
     return(
         <Image src='/assets/dislike-icon.svg' alt='like-icon' />
     )
-} 
+}
 
 function UnLiked ({opn}: {opn: boolean}){
     return(
@@ -25,10 +25,10 @@ function UnLiked ({opn}: {opn: boolean}){
        {opn ? ( <Image src='/assets/liked.svg' alt='like-icon' className='w-6 h-6 text-[#CCCCCC]' />)
        :
        ( <Image src='/assets/unliked.svg' alt='like-icon' className='w-6 h-6 text-[#CCCCCC]' />)}
-       
+
        </>
     )
-} 
+}
 export default function CardUI({data}: Props) {
 
 
@@ -42,7 +42,7 @@ export default function CardUI({data}: Props) {
     <CardBody padding={0} >
       <div className="img relative">
       <Image
-        src='https://images.unsplash.com/photo-1555041469-a586c61ea9bc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80'
+        src={data.img[0].img}
         alt='Green double couch with wooden legs'
         borderRadius='16'
         borderBottomRadius={0}
