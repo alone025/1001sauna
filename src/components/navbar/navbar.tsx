@@ -32,6 +32,7 @@ const Navbar: React.FC = (): JSX.Element => {
   };
 
 
+
   const handleSetSearchBar = (e: React.ChangeEvent<HTMLInputElement>): void => {
     const em = e.target.value;
     if (em.length > 0) {
