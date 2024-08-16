@@ -1,79 +1,13 @@
 import { HStack, VStack } from "@chakra-ui/react";
-import { Sauna } from "../types/cardType";
 import CardUI from "../ui/card/card";
 import { motion, AnimatePresence } from 'framer-motion'
 import { useState } from "react";
 import GorodModal from "../ui/modal/gorodModal";
+import data from "../data/home_bez_gorod_data";
 
-interface City {
-  cityname: string;
-  saunas: Sauna[];
-}
 
 const Home_bez_gorod = () => {
-  const data: City[] = [
-    {
-      cityname: "Сауны Воронежа",
-      saunas: [
-        {
-          img: [
-            {
-              img: "",
-            },
-          ],
-          name: "Сауна Глубина",
-          liked: 51,
-          unLiked: 25,
-          parnaya: "Сауна, хамам, финская, русская",
-          address: "Мира, 112, корпус 1",
-          hajm: " 6, до 30 чел.",
-          opportunity:
-            "бассейн 4х2,5 метра, DVD, спутниковое ТВ, аудио-видео аппаратура",
-          price: "1600 - 2000 ₽/час",
-          chegirma: "15",
-        },
-        {
-          img: [
-            {
-              img: "",
-            },
-          ],
-          name: "Сауна Глубина",
-          liked: 51,
-          unLiked: 25,
-          parnaya: "Сауна, хамам, финская, русская",
-          address: "Мира, 112, корпус 1",
-          hajm: " 6, до 30 чел.",
-          opportunity:
-            "бассейн 4х2,5 метра, DVD, спутниковое ТВ, аудио-видео аппаратура",
-          price: "1600 - 2000 ₽/час",
-          chegirma: "15",
-        },
-      ],
-    },
-    {
-      cityname: "Сауны Москвы",
-      saunas: [
-        {
-          img: [
-            {
-              img: "",
-            },
-          ],
-          name: "Сауна Глубина",
-          liked: 51,
-          unLiked: 25,
-          parnaya: "Сауна, хамам, финская, русская",
-          address: "Мира, 112, корпус 1",
-          hajm: " 6, до 30 чел.",
-          opportunity:
-            "бассейн 4х2,5 метра, DVD, спутниковое ТВ, аудио-видео аппаратура",
-          price: "1600 - 2000 ₽/час",
-          chegirma: "15",
-        },
-      ],
-    },
-  ];
+
 
 
   const [openModal, setOpenModal] = useState(true)
