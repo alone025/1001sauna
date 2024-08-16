@@ -28,6 +28,7 @@ const Navbar: React.FC = (): JSX.Element => {
     localStorage.setItem('cityGorod', value);
     setCity(value);
     window.location.reload()
+  
   };
 
 
