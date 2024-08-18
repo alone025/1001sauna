@@ -34,7 +34,7 @@ function Home_gorod({ city }: Props) {
             <Discount />
           </div>
           <div className="flex gap-[32px]">
-            <div className="w-[300px] hidden lg:block">
+            <div className="w-[272px] hidden lg:block">
               <Filter />
             </div>
             <HStack

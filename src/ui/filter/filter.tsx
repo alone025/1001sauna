@@ -13,7 +13,7 @@ const Filter = (): JSX.Element => {
   const [maxPrice, setMaxPrice] = useState(30000);
 
   return (
-    <div className="font-OpenSans border rounded-[16px]">
+    <div className="font-OpenSans rounded-[16px] filter_comp p-[20px]">
       <div className="">
         <h4 className="text-[16px] text-[#3B4255] font-[600] pl-[15px] max-w-[155px] py-[20px]">
           Подобрать сауну или баню
@@ -36,7 +36,7 @@ const Filter = (): JSX.Element => {
                       value={minPrice}
                       onChange={(e) => setMinPrice(Number(e.target.value))}
                       placeholder="От"
-                      className="!text-[14px] !px-[31px] text-[#4C4C4C]"
+                      className="!text-[14px] !px-[31px] text-[#4C4C4C] !py-[9px]"
                     />
                     <InputRightElement
                       children="₽"
@@ -55,7 +55,7 @@ const Filter = (): JSX.Element => {
                       max={30000}
                       value={maxPrice}
                       onChange={(e) => setMaxPrice(Number(e.target.value))}
-                      className="!text-[14px] !px-[31px] text-[#4C4C4C]"
+                      className="!text-[14px] !px-[31px] text-[#4C4C4C] !py-[9px]"
                     />
                     <InputRightElement
                       children="₽"
