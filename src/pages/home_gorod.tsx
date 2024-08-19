@@ -33,16 +33,16 @@ function Home_gorod({ city }: Props) {
           <div className="md:hidden lg:block">
             <Discount />
           </div>
-          <div className="flex gap-[32px]">
-            <div className="w-[272px] hidden lg:block">
+          <div className="flex gap-[32px] justify-center">
+            <div className="max-w-[232px] xl:max-w-[272px] hidden lg:block">
               <Filter />
             </div>
             <HStack
               spacing="24px"
-              className="!grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-5"
+              className="!grid !gap-2 sm:!gap-5 lg:!gap-2 xl:!gap-6 grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-5"
             >
               {selectedCity.saunas.map((nm, ind) => (
-                <CardUI data={nm} key={ind} />
+                <CardUI data={nm} nmd={ind} key={ind} />
               ))}
             </HStack>
           </div>

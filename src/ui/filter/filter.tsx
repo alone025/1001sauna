@@ -101,10 +101,10 @@ const Filter = (): JSX.Element => {
           <CustomAccordion section_title="Аквазона" description="Аквазона" />
           <CustomAccordion section_title="Услуги" description="Услуги" />
           <div className="flex flex-col items-center justify-center mt-[12px] gap-[12px] mb-[20px]">
-            <button className="bg-[#FF7A01] text-white px-[24px] py-[8px] w-[232px] h-[48px] flex justify-center items-center rounded-[12px]">
+            <button className="bg-[#FF7A01] text-white px-[24px] py-[8px] w-[212px] xl:w-[232px] h-[48px] flex justify-center items-center rounded-[12px]">
               Применить
             </button>
-            <button className="bg-transparent text-[#3B4255] border border-[#CCC] px-[24px] py-[8px] w-[232px] h-[48px] flex justify-center items-center rounded-[12px]">
+            <button className="bg-transparent text-[#3B4255] border border-[#CCC] px-[24px] py-[8px] w-[212px] xl:w-[232px] h-[48px] flex justify-center items-center rounded-[12px]">
               Сбросить
             </button>
           </div>
