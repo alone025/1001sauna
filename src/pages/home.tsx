@@ -5,7 +5,7 @@ import Home_gorod from "./home_gorod";
 
 function Home(): JSX.Element {
   const [city, setCity] = useState("");
-  const [loading, setLoading] = useState<boolean>(true);
+  const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
     setLoading(true);
@@ -18,7 +18,7 @@ function Home(): JSX.Element {
   }, []);
 
   return (
-    <div className="main-home-page mt-8 mx-4 sm:mx-[20px] xl:mx-0">
+    <div className="main-home-page mt-8 mx-4 sm:mx-[20px] 2xl:mx-0">
       {loading ? (
         <p></p>
       ) : (

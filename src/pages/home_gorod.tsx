@@ -39,7 +39,7 @@ function Home_gorod({ city }: Props) {
             </div>
             <HStack
               spacing="24px"
-              className="!grid !gap-2 sm:!gap-5 lg:!gap-2 xl:!gap-6 grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-5"
+              className="!grid !gap-2 sm:!gap-5 lg:!gap-2 xl:!gap-6 grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-4"
             >
               {selectedCity.saunas.map((nm, ind) => (
                 <CardUI data={nm} nmd={ind} key={ind} />
