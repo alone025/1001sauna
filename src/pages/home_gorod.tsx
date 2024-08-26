@@ -1,4 +1,5 @@
-import { HStack, VStack } from "@chakra-ui/react";
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import { HStack, SimpleGrid, VStack } from "@chakra-ui/react";
 import CardUI from "../ui/card/card";
 import cityData from "../data/home_gorod_data";
 import { transliterate } from "../components/translater/translater";
@@ -145,7 +146,6 @@ const GridIcon = ({ isActive }: IconProps) => (
 function HomeGorod({ city }: Props) {
   const lotinHarf = transliterate(city);
   const selectedCity = cityData[lotinHarf];
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const location = useLocation();
   const [icon, setIcon] = useState<string | null>(null);
 
@@ -164,6 +164,44 @@ function HomeGorod({ city }: Props) {
   if (!selectedCity) {
     return <p>Город не найден</p>;
   }
+
+  const renderCards = () => {
+    switch (icon) {
+      case "table":
+        return (
+          <SimpleGrid columns={{ base: 2, md: 3, lg: 4 }} spacing="24px">
+            {selectedCity.saunas.map((nm, ind) => (
+              <CardUI accepted={true} data={nm} nmd={ind} key={ind} />
+            ))}
+          </SimpleGrid>
+        );
+      case "grid":
+        return (
+          <SimpleGrid columns={{ base: 1, md: 2 }} spacing="24px">
+            {selectedCity.saunas.map((nm, ind) => (
+              <CardUI accepted={true} data={nm} nmd={ind} key={ind} />
+            ))}
+          </SimpleGrid>
+        );
+      case "map":
+        return (
+          <div>
+            <p>Map view is under development...</p>
+          </div>
+        );
+      default:
+        return (
+          <HStack
+            spacing="24px"
+            className="!grid !gap-2 sm:!gap-5 lg:!gap-2 xl:!gap-6 grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-4"
+          >
+            {selectedCity.saunas.map((nm, ind) => (
+              <CardUI accepted={true} data={nm} nmd={ind} key={ind} />
+            ))}
+          </HStack>
+        );
+    }
+  };
 
   return (
     <VStack spacing={12} align="stretch">
@@ -213,14 +251,7 @@ function HomeGorod({ city }: Props) {
             <Filter />
           </div>
           <div className="eminem flex justify-center flex-col items-center">
-            <HStack
-              spacing="24px"
-              className="!grid !gap-2 sm:!gap-5 lg:!gap-2 xl:!gap-6 grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-4"
-            >
-              {selectedCity.saunas.map((nm, ind) => (
-                <CardUI accepted={true} data={nm} nmd={ind} key={ind} />
-              ))}
-            </HStack>
+            {renderCards()}
             <div className="mt-12">
               <MainBanner />
             </div>
