@@ -6,7 +6,7 @@ const Footer = (): JSX.Element => {
 		<>
 			<div className='bg-[#343434] w-full py-[48px] font-OpenSans mt-[50px]'>
 				<Wrapper>
-					<div className='flex flex-col md:flex-row justify-between items-start mx-[20px] lg:mx-0'>
+					<div className='flex flex-col md:flex-row justify-between items-start mx-4 sm:mx-[20px] 2xl:mx-0'>
 						<div className='flex flex-col'>
 							<img
 								src='/assets/logo.png'

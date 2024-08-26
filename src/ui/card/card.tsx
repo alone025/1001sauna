@@ -1,5 +1,5 @@
 import { Button, ButtonGroup, Card, CardBody, CardFooter, Heading, IconButton, Image, Stack, Text } from '@chakra-ui/react'
-import React, { useState } from 'react'
+import  { useState } from 'react'
 import { Sauna } from '../../types/cardType'
 import { PhoneIcon } from '@chakra-ui/icons'
 
