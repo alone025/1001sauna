@@ -75,7 +75,7 @@ const MobNavbar: React.FC<mobileNavProps> = ({ closeNav }): JSX.Element => {
 							<a href='#'>Заведения члены НБО</a>
 						</li>
 						<li>
-							<a href='#'>Озбранное</a>
+							<a href='#'>Избранное</a>
 						</li>
 					</ul>
 				</div>

@@ -8,6 +8,7 @@ import { SearchIcon } from "@chakra-ui/icons";
 import MobNavbar from "./mobNavbar";
 import City_regionsModal from "../../ui/modal/city_regionsModal";
 import { useModalContextNew } from "../../context/modalContext";
+import { Link } from "react-router-dom";
 
 const Navbar: React.FC = (): JSX.Element => {
   const [openModal, setOpenModal] = useState<boolean>(false);
@@ -133,10 +134,10 @@ const Navbar: React.FC = (): JSX.Element => {
                 )}
               </div>
               <div className="md:flex items-center lg:gap-[50px] hidden">
-                <div className="lg:flex items-center gap-2 cursor-pointer hidden">
+                <Link to='/liked-card' className="lg:flex items-center gap-2 cursor-pointer hidden">
                   <img src="/assets/like.png" alt="like icon" />
                   <h4>Избранное</h4>
-                </div>
+                </Link>
                 <div className="flex items-center gap-[20px]">
                   <img
                     src="/assets/search.png"

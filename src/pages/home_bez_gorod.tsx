@@ -31,7 +31,7 @@ const Home_bez_gorod = () => {
             </div>
             <HStack spacing="20px" wrap="wrap" justifyContent='center'>
               {c.saunas.map((nm, ind) => (
-                <CardUI nmd={ind} data={nm} key={ind} />
+                <CardUI accepted={true} nmd={ind} data={nm} key={ind} />
               ))}
             </HStack>
           </div>

@@ -6,6 +6,7 @@ import { PhoneIcon } from '@chakra-ui/icons'
 type Props = {
     data: Sauna
     nmd: number
+    accepted: boolean
 }
 
 function IconLike (){
@@ -30,7 +31,7 @@ function UnLiked ({opn}: {opn: boolean}){
        </>
     )
 }
-export default function CardUI({data, nmd}: Props) {
+export default function CardUI({data, nmd, accepted}: Props) {
 
 
   const [opnL, setOpnL] = useState<boolean>(false)
@@ -49,7 +50,9 @@ export default function CardUI({data, nmd}: Props) {
         borderBottomRadius={0}
       />
         <div className="absolute left-3 md:left-4 top-3 md:top-4 flex flex-col gap-2">
-        <p className='bg-[#00000080] text-center rounded-2xl font-OpenSans font-semibold text-[10px] sm:text-[11px] md:text-xs text-white px-[5px] py-1' >{nmd+1 > 9 ? nmd+1 : `0${nmd+1}`}</p>
+        {
+          accepted && (<p className='bg-[#00000080] text-center rounded-2xl font-OpenSans font-semibold text-[10px] sm:text-[11px] md:text-xs text-white px-[5px] py-1' >{nmd+1 > 9 ? nmd+1 : `0${nmd+1}`}</p>)
+        }
         <p className='bg-[#F44747] rounded-2xl font-OpenSans font-semibold text-[10px] sm:text-[11px] md:text-xs text-white px-[5px] py-1' >25-%</p>
         </div>
         <div className="likeee absolute right-3 top-3 block md:hidden">
