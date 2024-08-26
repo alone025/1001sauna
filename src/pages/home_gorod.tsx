@@ -6,6 +6,7 @@ import { transliterate } from "../components/translater/translater";
 import Filter from "../ui/filter/filter";
 import Discount from "../ui/discount/discount";
 import Main_banner from "../ui/banner/main_banner";
+import Links from "../ui/links/links";
 
 type Props = {
   city: string;
@@ -31,8 +32,12 @@ function Home_gorod({ city }: Props) {
               {selectedCity.cityname}
             </h3>
           </div>
-          <div className="md:hidden lg:block">
-            <Discount />
+          <div className="flex items-center gap-[30px]">
+            <div className="md:hidden lg:block">
+              <Discount />
+            </div>
+
+            <Links />
           </div>
           <div className="flex gap-[32px] justify-center">
             <div className="max-w-[232px] xl:max-w-[272px] hidden lg:block">
