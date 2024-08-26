@@ -5,6 +5,7 @@ import {
 } from "react-router-dom";
 import Home from "../pages/home";
 import Liked from "../pages/liked";
+import Category from "../pages/category";
 
 function Main(): JSX.Element {
   return (
@@ -12,7 +13,8 @@ function Main(): JSX.Element {
 
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="liked-card" element={<Liked/>} />
+          <Route path="/liked-card" element={<Liked/>} />
+          <Route path="/category-mmm" element={<Category/>}/>
         </Routes>
    
     </div>
