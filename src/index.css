@@ -17,3 +17,8 @@
 .filter_comp {
   box-shadow: 0px 6px 12px 0px rgba(0, 0, 0, 0.06);
 }
+
+#mdsa::marker{
+  color: #FF7A01;
+}
+

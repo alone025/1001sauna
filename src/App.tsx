@@ -6,17 +6,15 @@ import Footer from "./components/footer/footer";
 import CustomSwiper from "./components/swipper/swipper";
 
 import SwipperCardBottom from "./ui/swipperCard/swipperCard";
+import TextFooter from "./components/textFooter/textFooter";
 
 function App(): JSX.Element {
-
   const slides = [
-   <SwipperCardBottom/>,
-   <SwipperCardBottom/>,
-   <SwipperCardBottom/>,
-   <SwipperCardBottom/>
+    <SwipperCardBottom />,
+    <SwipperCardBottom />,
+    <SwipperCardBottom />,
+    <SwipperCardBottom />,
   ];
-
-
 
   return (
     <>
@@ -29,10 +27,23 @@ function App(): JSX.Element {
         <Main />
       </Wrapper>
       <div className="swiper-time mt-12 bg-[#343434] pt-[64px] pb-[55px]">
-       <Wrapper>
-       <h3 className="font-OpenSans text-[27px] font-semibold text-white mx-4 sm:mx-[20px] 2xl:mx-0 mb-12" >Отзывы  о саунах и банях Москвы</h3></Wrapper>?
-      <CustomSwiper items={slides} autoPlay={true} autoPlayInterval={40000000} />
+        <Wrapper>
+          <h3 className="font-OpenSans text-[27px] font-semibold text-white mx-4 sm:mx-[20px] 2xl:mx-0 mb-12">
+            Отзывы о саунах и банях Москвы
+          </h3>
+        </Wrapper>
+        <CustomSwiper
+          items={slides}
+          autoPlay={true}
+          autoPlayInterval={40000000}
+        />
       </div>
+    <Wrapper>
+    <div className="text-time mx-4 sm:mx-[20px] 2xl:mx-0 mt-12">
+        <h3 className="font-OpenSans font-semibold text-2xl lg:text-[27px] text-[#3B4255]" >Сауны и бани в Москве</h3>
+        <TextFooter/>
+      </div>
+    </Wrapper>
       <Footer />
     </>
   );

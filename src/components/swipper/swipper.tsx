@@ -1,7 +1,7 @@
-// components/CustomSwiper.tsx
 import React, { useState, useEffect, useRef } from 'react';
-import { Box, IconButton, HStack } from '@chakra-ui/react';
+import { Box, IconButton, HStack, Flex, Button } from '@chakra-ui/react';
 import { ChevronLeftIcon, ChevronRightIcon } from '@chakra-ui/icons';
+import Wrapper from '../../layout/wrapper';
 
 const CustomSwiper: React.FC<{ items: React.ReactNode[]; autoPlay?: boolean; autoPlayInterval?: number }> = ({
   items,
@@ -12,6 +12,31 @@ const CustomSwiper: React.FC<{ items: React.ReactNode[]; autoPlay?: boolean; aut
   const autoPlayRef = useRef<NodeJS.Timeout | null>(null);
   const startX = useRef<number>(0);
   const isDragging = useRef<boolean>(false);
+  const [slideWidth, setSlideWidth] = useState<string>('100%'); 
+  const [slidesToShow, setSlidesToShow] = useState<number>(1);
+
+  useEffect(() => {
+    const handleResize = () => {
+      const screenWidth = window.innerWidth;
+      if (screenWidth < 768) {
+        setSlideWidth('100%'); 
+        setSlidesToShow(1);
+      } else if (screenWidth < 1024) {
+        setSlideWidth('700px'); 
+        setSlidesToShow(1);
+      } else {
+        setSlideWidth('650px'); 
+        setSlidesToShow(5);
+      }
+    };
+
+    handleResize();
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
 
   useEffect(() => {
     if (autoPlay) {
@@ -22,11 +47,10 @@ const CustomSwiper: React.FC<{ items: React.ReactNode[]; autoPlay?: boolean; aut
     };
   }, [currentIndex, autoPlay, autoPlayInterval]);
 
-
   const handleTouchStart = (e: React.TouchEvent) => {
     startX.current = e.touches[0].clientX;
     isDragging.current = true;
-    if (autoPlayRef.current) clearInterval(autoPlayRef.current); 
+    if (autoPlayRef.current) clearInterval(autoPlayRef.current);
   };
 
   const handleTouchMove = (e: React.TouchEvent) => {
@@ -48,11 +72,10 @@ const CustomSwiper: React.FC<{ items: React.ReactNode[]; autoPlay?: boolean; aut
     }
   };
 
-  // Handle mouse events for cursor swipe
   const handleMouseDown = (e: React.MouseEvent) => {
     startX.current = e.clientX;
     isDragging.current = true;
-    if (autoPlayRef.current) clearInterval(autoPlayRef.current); 
+    if (autoPlayRef.current) clearInterval(autoPlayRef.current);
   };
 
   const handleMouseMove = (e: React.MouseEvent) => {
@@ -75,13 +98,22 @@ const CustomSwiper: React.FC<{ items: React.ReactNode[]; autoPlay?: boolean; aut
   };
 
   const handlePrev = () => {
-    setCurrentIndex((prevIndex) => (prevIndex === 0 ? items.length - 2 : prevIndex - 1));
+    setCurrentIndex((prevIndex) => (prevIndex === 0 ? items.length - 1 : prevIndex - 1));
   };
 
   const handleNext = () => {
-    setCurrentIndex((prevIndex) => (prevIndex === items.length - 2 ? 0 : prevIndex + 1));
+    setCurrentIndex((prevIndex) => (prevIndex === items.length - 1 ? 0 : prevIndex + 1));
   };
 
+  const calculateOpacity = (index: number) => {
+    const distance = Math.abs(currentIndex - index);
+    return distance > slidesToShow ? 0.5 : 1;
+  };
+
+
+  const handleDotClick = (index: number) => {
+    setCurrentIndex(index);
+  };
   return (
     <Box
       className="relative w-full overflow-hidden"
@@ -95,33 +127,60 @@ const CustomSwiper: React.FC<{ items: React.ReactNode[]; autoPlay?: boolean; aut
     >
       <Box
         className="flex transition-transform duration-500"
-        style={{ transform: `translateX(-${currentIndex * 25}%)` }}
+        style={{ transform: `translateX(-${currentIndex * (100 / slidesToShow)}%)` }} // Updated translateX calculation
       >
         {items.map((item, index) => (
-          <Box key={index} className="min-w-[712px] flex justify-center items-center ml-5">
+          <Box
+            key={index}
+            className="flex justify-center items-center md:ml-5"
+            style={{
+              minWidth: `${slideWidth}`,
+              transition: 'opacity 0.5s',
+              opacity: calculateOpacity(index),
+            }}
+          >
             {item}
           </Box>
         ))}
       </Box>
-   
-      <HStack className="absolute top-1/2 left-10 right-10 transform -translate-y-1/2 justify-between">
+
+      <HStack className="absolute !hidden md:!flex top-1/2 left-10 right-10 transform -translate-y-1/2 justify-between">
         <IconButton
           aria-label="Previous"
-          icon={<ChevronLeftIcon  color="#fff" />}
+          icon={<ChevronLeftIcon color="#fff" />}
           onClick={handlePrev}
-          bgColor='#00000099'
-           rounded='full'
-          className="bg-[#00000099] hover:!bg-[#00000099] bg-opacity-75 hover:bg-opacity-100"
+          bgColor="#00000099"
+          rounded="full"
+          _hover='none'
+          _active='none'
         />
         <IconButton
           aria-label="Next"
-          icon={<ChevronRightIcon  color="#fff" />}
+          icon={<ChevronRightIcon color="#fff" />}
           onClick={handleNext}
-          bgColor='#00000099'
-         rounded='full'
-          className="bg-[#00000099] hover:!bg-[#00000099] bg-opacity-75 hover:bg-opacity-100"
+          bgColor="#00000099"
+          rounded="full"
+          _hover='none'
+          _active='none'
         />
       </HStack>
+
+     <Wrapper>
+     <Flex justifyContent="start" mt={8} className='gap-3 mx-4 sm:mx-[20px] 2xl:mx-0 block md:!hidden'>
+        {items.map((_, index) => (
+          <Button
+            key={index}
+            size="xs"
+            opacity={currentIndex !== index ? 0.4 : 1} 
+            bg={currentIndex == index ? '#FF7A01': "#FFF"}
+            onClick={() => handleDotClick(index)}
+            borderRadius="full"
+            _hover='none'
+            className='!w-2 !h-2 !min-w-2 !p-0'
+          />
+        ))}
+      </Flex>
+     </Wrapper>
     </Box>
   );
 };
