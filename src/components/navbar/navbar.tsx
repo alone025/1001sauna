@@ -61,7 +61,7 @@ const Navbar: React.FC = (): JSX.Element => {
   return (
     <>
       <Banner />
-      <div className="nav">
+      <div className="nav bg-[#fff]">
         <Wrapper>
           <div className="font-OpenSans flex items-center gap-[20px] justify-between py-[15px] mx-[20px] 2xl:mx-0">
             <div className="flex justify-between md:w-full items-center gap-[20px]">

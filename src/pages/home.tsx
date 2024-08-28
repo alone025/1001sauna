@@ -18,7 +18,7 @@ function Home(): JSX.Element {
   }, []);
 
   return (
-    <div className="main-home-page mt-8">
+    <div className="main-home-page sm:mt-8">
       {loading ? (
         <p></p>
       ) : (

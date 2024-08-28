@@ -206,7 +206,7 @@ function HomeGorod({ city }: Props) {
   return (
     <VStack spacing={12} align="stretch">
       <div className="gorods-map">
-        <div className="name-city">
+        <div className="name-city mt-8 sm:mt-0">
           <h3 className="text-[30px] text-[#3B4255] font-OpenSans font-semibold mb-8">
             {selectedCity.cityname}
           </h3>
@@ -218,10 +218,12 @@ function HomeGorod({ city }: Props) {
 
           <div className="flex flex-col items-start mb-[32px]">
             <Links />
-
-            <div className="flex justify-between items-center w-full">
-              <div className="text-[#3B4255] text-[27px] font-[600]">
-                ТОП-10:
+            <div className="flex lg:hidden justify-between items-center w-full mb-8">
+              <div className="text-[#3B4255] text-[14px] sm:text-[16px] font-[600] flex items-center gap-3">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+  <path d="M22 3.5H2L10 12.96V19.5L14 21.5V12.96L22 3.5Z" stroke="#3B4255" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+              Фильтры
               </div>
               <div className="flex gap-[16px] items-center">
                 <div
@@ -237,7 +239,32 @@ function HomeGorod({ city }: Props) {
                   <GridIcon isActive={icon === "grid"} />
                 </div>
                 <div
+                className="cursor-pointer hidden md:block"
+                onClick={() => handleActiveIcon("map")}
+              >
+                <MapIcon isActive={icon === "map"} />
+              </div>
+              </div>
+            </div>
+            <div className="flex justify-between items-center w-full">
+              <div className="text-[#3B4255] text-[27px] font-[600]">
+                ТОП-10: Бани и сауны Москвы
+              </div>
+              <div className="hidden lg:flex gap-[16px] items-center">
+                <div
                   className="cursor-pointer"
+                  onClick={() => handleActiveIcon("table")}
+                >
+                  <TableIcon isActive={icon === "table"} />
+                </div>
+                <div
+                  className="cursor-pointer"
+                  onClick={() => handleActiveIcon("grid")}
+                >
+                  <GridIcon isActive={icon === "grid"} />
+                </div>
+                <div
+                  className="cursor-pointer hidden md:block"
                   onClick={() => handleActiveIcon("map")}
                 >
                   <MapIcon isActive={icon === "map"} />
@@ -248,11 +275,11 @@ function HomeGorod({ city }: Props) {
         </div>
         <div className="flex gap-[32px] justify-center">
           <div className="max-w-[232px] xl:max-w-[272px] hidden lg:block">
-            <Filter />
+            <Filter sticky={true} />
           </div>
           <div className="eminem flex justify-center flex-col items-center">
             {renderCards()}
-            <div className="mt-12">
+            <div className="mt-12 hidden sm:block">
               <MainBanner />
             </div>
           </div>

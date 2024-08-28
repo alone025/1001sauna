@@ -7,7 +7,7 @@ export default function Liked() {
   return (
     <div className="likee-card-page mt-5 md:mt-8 lg:mt-12">
         <h2 className="text-[30px] hidden sm:block font-OpenSans font-semibold text-[#3B4255]">Избранное</h2>
-        <p className="text-xs block sm:hidden font-OpenSans font-normal text-[#3B4255]" >Главная / Избранное</p>
+        {/* <p className="text-xs block sm:hidden font-OpenSans font-normal text-[#3B4255]" >Главная / Избранное</p> */}
         <div className="cards-list mt-6 sm:mt-8 flex flex-row flex-wrap gap-5 justify-center">
         {data[0].saunas.map((item, keys) => (
         <Box key={keys} className="relative">

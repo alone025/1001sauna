@@ -8,12 +8,12 @@ import {
 import CustomAccordion from "../accordion/accordion";
 import CheckboxUI from "../checkbox/checkbox";
 
-const Filter = (): JSX.Element => {
+const Filter = ({sticky}: {sticky: boolean}): JSX.Element => {
   const [minPrice, setMinPrice] = useState(700);
   const [maxPrice, setMaxPrice] = useState(30000);
 
   return (
-    <div className="font-OpenSans rounded-[16px] filter_comp p-[20px]">
+    <div style={{ position: sticky ? 'sticky': "unset", top: "10px"}} className="font-OpenSans rounded-[16px] filter_comp p-[20px]">
       <div className="">
         <h4 className="text-[16px] text-[#3B4255] font-[600] pl-[15px] max-w-[155px] py-[20px]">
           Подобрать сауну или баню

@@ -18,7 +18,7 @@ const SwipperCardBottom = () => {
       overflow="hidden"
       bg="transparent"
       style={{ boxShadow: "none" }}
-      className="items-baseline sm:items-center gap-6 sm:gap-0 !flex-col sm:!flex-row"
+      className="items-baseline sm:items-center gap-6 sm:gap-0 !flex-col sm:!flex-row mx-2 sm:mx-0"
     >
       <Image
         objectFit="cover"

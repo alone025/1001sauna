@@ -20,7 +20,7 @@ const Home_bez_gorod = () => {
 
 
   return (
-    <div className="home-page-city-unknown">
+    <div className="home-page-city-unknown mt-8 sm:mt-0">
       <VStack spacing={12} align="stretch">
         {data.map((c, index) => (
           <div className="gorods-map" key={index}>
