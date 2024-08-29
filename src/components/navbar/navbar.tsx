@@ -145,7 +145,8 @@ const Navbar: React.FC = (): JSX.Element => {
                     className="lg:hidden"
                     onClick={() => setSearchOpen(!searchOpen)}
                   />
-                  <img src="/assets/like.png" alt="404" className="lg:hidden" />
+                <Link to='/liked-card'>
+                <img src="/assets/like.png" alt="404" className="lg:hidden" /></Link>
 
                   <button
                     className="bg-[#FF7A01] rounded-[12px] flex items-center justify-center text-[white] px-[56px] py-[8px] h-[48px]"

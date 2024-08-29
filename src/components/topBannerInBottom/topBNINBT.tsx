@@ -3,6 +3,7 @@ import cityData from "../../data/home_gorod_data";
 import CardUI from "../../ui/card/card";
 import { HStack, SimpleGrid } from "@chakra-ui/react";
 import YandexMap from "../../ui/map/map";
+import HorizontalCard from "../../ui/horizontalCard/horizontalCard";
 
 
 type Props = {
@@ -35,9 +36,9 @@ const TopBNINBT = ({
         );
       case true:
         return (
-          <SimpleGrid columns={{ base: 1, md: 2 }} spacing="24px">
+          <SimpleGrid columns={1} spacing="24px">
             {selectedCity.map((nm, ind) => (
-              <CardUI accepted={true} data={nm} nmd={ind} key={ind} />
+             <HorizontalCard data={nm} nmd={ind} accepted={true} />
             ))}
           </SimpleGrid>
         );

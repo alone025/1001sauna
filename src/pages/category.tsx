@@ -7,6 +7,7 @@ import {
   MenuButton,
   MenuItem,
   MenuList,
+  SimpleGrid,
 } from "@chakra-ui/react";
 import CardUI from "../ui/card/card";
 import cityData from "../data/home_gorod_data";
@@ -16,6 +17,8 @@ import TopBNINBT from "../components/topBannerInBottom/topBNINBT";
 import { ChevronDownIcon, ChevronUpIcon } from "@chakra-ui/icons";
 import Links from "../ui/links/links";
 import Discount from "../ui/discount/discount";
+import HorizontalCard from "../ui/horizontalCard/horizontalCard";
+import YandexMap from "../ui/map/map";
 
 type IconProps = {
   isActive: boolean;
@@ -170,6 +173,78 @@ const Category = () => {
     },
   ];
 
+  
+
+  useEffect(()=>{
+    const handleResize = () => {
+      const wiidht = window.innerWidth
+      console.log(wiidht);
+      if(768 > wiidht){
+        // setIcon("table")
+        handleActiveIcon('table')
+      }
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    // Clean up the event listener on component unmount
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+
+    
+  },[])
+
+  const renderCards = () => {
+    switch (icon) {
+      case "table":
+        return (
+          <SimpleGrid columns={{ base: 2, md: 3, lg: 4 }} spacing="24px">
+            {selectedCity.saunas.map((nm, ind) => (
+              <CardUI accepted={true} data={nm} nmd={ind} key={ind} />
+            ))}
+          </SimpleGrid>
+        );
+      case "grid":
+        return (
+          <SimpleGrid w='100%' columns={1} spacing="8px">
+            {selectedCity.saunas.map((nm, ind) => (
+              <HorizontalCard data={nm} nmd={ind} accepted={true} />
+            ))}
+          </SimpleGrid>
+        );
+      case "map":
+        return (
+          <SimpleGrid w='100%' columns={2} spacing="20px" className="!hidden md:!grid">
+            <div className="left-cont">
+            <SimpleGrid columns={{ base: 1, lg: 2 }} spacing="20px" className="!gap-5 lg:!gap-2 xl:!gap-5">
+            {selectedCity.saunas.map((nm, ind) => (
+              <CardUI accepted={true} data={nm} nmd={ind} key={ind} />
+            ))}
+          </SimpleGrid>
+            </div>
+            <div className="right-cont">
+              <div className="sticky top-2">
+              <YandexMap/>
+              </div>
+            </div>
+        </SimpleGrid>
+        );
+      default:
+        return (
+          <HStack
+            spacing="24px"
+            className="!grid !gap-2 sm:!gap-5 lg:!gap-2 xl:!gap-6 grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-4"
+          >
+            {selectedCity.saunas.map((nm, ind) => (
+              <CardUI accepted={true} data={nm} nmd={ind} key={ind} />
+            ))}
+          </HStack>
+        );
+    }
+  };
+
+
   useEffect(() => {
     const isActive = localStorage.getItem("iconActiveCategory");
     if (isActive) {
@@ -181,6 +256,9 @@ const Category = () => {
     localStorage.setItem("iconActiveCategory", item);
     setIcon(item);
   };
+
+
+
 
   return (
     <div className="category mt-8">
@@ -342,21 +420,22 @@ const Category = () => {
             </div>
           </div>
           <div className="eminem flex justify-center flex-col items-center mt-8">
-            <HStack
+            {/* <HStack
               spacing="24px"
               className="!grid !gap-2 sm:!gap-5 lg:!gap-2 xl:!gap-6 grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-4"
             >
               {selectedCity.saunas.map((nm, ind) => (
                 <CardUI accepted={true} data={nm} nmd={ind} key={ind} />
               ))}
-            </HStack>
+            </HStack> */}
+            {renderCards()}
             <Button className="mt-5 shadow-md w-full !bg-[#FFFFFF] text-[#3B4255] !rounded-xl">
               Показать ещё
             </Button>
             <div className="mt-12">
               <TopBNINBT
-                verHor={false}
-                mapView={true}
+                verHor={icon === "grid" ? true : false}
+                mapView={icon === "map" ? false : true}
                 lastHistory={true}
                 topMounth={false}
                 topWeek={false}

@@ -12,13 +12,14 @@ const Filter = ({sticky}: {sticky: boolean}): JSX.Element => {
   const [minPrice, setMinPrice] = useState(700);
   const [maxPrice, setMaxPrice] = useState(30000);
 
+
   return (
-    <div style={{ position: sticky ? 'sticky': "unset", top: "10px"}} className="font-OpenSans rounded-[16px] filter_comp p-[20px]">
+    <div style={{ position: sticky ? 'sticky': "unset", top: "-18px"}} className="font-OpenSans rounded-[16px] filter_comp p-[20px]">
       <div className="">
         <h4 className="text-[16px] text-[#3B4255] font-[600] pl-[15px] max-w-[155px] py-[20px]">
           Подобрать сауну или баню
         </h4>
-        <div>
+        <div style={{overflowY:"auto", maxHeight:'calc(-15rem + 100vh)'}} >
           <CustomAccordion
             section_title={"Стоимость"}
             description={
@@ -100,7 +101,9 @@ const Filter = ({sticky}: {sticky: boolean}): JSX.Element => {
 
           <CustomAccordion section_title="Аквазона" description="Аквазона" />
           <CustomAccordion section_title="Услуги" description="Услуги" />
-          <div className="flex flex-col items-center justify-center mt-[12px] gap-[12px] mb-[20px]">
+          
+        </div>
+        <div className="flex flex-col items-center justify-center mt-[12px] gap-[12px] mb-[20px]">
             <button className="bg-[#FF7A01] text-white px-[24px] py-[8px] w-[212px] xl:w-[232px] h-[48px] flex justify-center items-center rounded-[12px]">
               Применить
             </button>
@@ -108,7 +111,6 @@ const Filter = ({sticky}: {sticky: boolean}): JSX.Element => {
               Сбросить
             </button>
           </div>
-        </div>
       </div>
     </div>
   );

@@ -53,7 +53,7 @@ export default function CardUI({data, nmd, accepted}: Props) {
         {
           accepted && (<p className='bg-[#00000080] text-center rounded-2xl font-OpenSans font-semibold text-[10px] sm:text-[11px] md:text-xs text-white px-[5px] py-1' >{nmd+1 > 9 ? nmd+1 : `0${nmd+1}`}</p>)
         }
-        <p className='bg-[#F44747] rounded-2xl font-OpenSans font-semibold text-[10px] sm:text-[11px] md:text-xs text-white px-[5px] py-1' >25-%</p>
+        <p className='bg-[#F44747] rounded-2xl font-OpenSans font-semibold text-[10px] sm:text-[11px] md:text-xs text-white px-[5px] py-1' >{data.chegirma}-%</p>
         </div>
         <div className="likeee absolute right-3 top-3 block md:hidden">
         <IconButton aria-label='Search database' size="sm"  onClick={()=>setOpnL(!opnL)} icon={<UnLiked opn={opnL}/>}  variant='outline' style={{border: "none"}} />
@@ -96,7 +96,7 @@ export default function CardUI({data, nmd, accepted}: Props) {
     </CardBody>
     <CardFooter className='!px-3 sm:!px-[16px] md:!px-5' >
       <ButtonGroup spacing='2' width='100%' >
-        <Button variant='outline' width='100%' borderColor='#FF7A01' textColor='#FF7A01' className='hover:!bg-[#f7f3ed] hover:!text-[#FF7A01] !h-8 sm:!h-9 md:!h-12 bg-[#FF7A01] !rounded-xl sm:!rounded-[10px] md:!rounded-[6px] sm:bg-transparent !text-white sm:!text-[#FF7A01] !text-[14px] sm:!text-[15px] md:!text-[16px]' >
+        <Button variant='outline' width='100%' borderColor='#FF7A01' textColor='#FF7A01' className='hover:!bg-[#f7f3ed] hover:!text-[#FF7A01] !h-8 sm:!h-9 md:!h-12 bg-[#FF7A01] !rounded-xl sm:!rounded-[10px] md:!rounded-[6px] sm:bg-transparent !text-white sm:!text-[#FF7A01] !text-[14px] sm:!text-[15px] md:!text-[16px] line-clamp-1' >
         Подробнее
         </Button>
         <IconButton

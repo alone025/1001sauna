@@ -1,7 +1,7 @@
 import { HStack, VStack } from "@chakra-ui/react";
 import CardUI from "../ui/card/card";
 import { motion, AnimatePresence } from 'framer-motion'
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import GorodModal from "../ui/modal/gorodModal";
 import data from "../data/home_bez_gorod_data";
 
@@ -10,14 +10,16 @@ const Home_bez_gorod = () => {
 
 
 
-  const [openModal, setOpenModal] = useState(true)
+  const [openModal, setOpenModal] = useState(false)
 
 
   const handleOpenModal = (): void => {
 		setOpenModal(!openModal)
 	}
 
-
+  useEffect(()=> {
+    setOpenModal(true)
+  },[])
 
   return (
     <div className="home-page-city-unknown mt-8 sm:mt-0">

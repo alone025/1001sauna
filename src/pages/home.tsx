@@ -7,14 +7,14 @@ function Home(): JSX.Element {
   const [city, setCity] = useState("");
   const [loading, setLoading] = useState<boolean>(false);
 
-  useEffect(() => {
+  useEffect( () => {
     setLoading(true);
     const storedData = localStorage.getItem("cityGorod");
     if (storedData) {
       setCity(storedData);
-      setLoading(false);
+      setLoading(false)
     } 
-    setLoading(false);
+    
   }, []);
 
   return (
@@ -22,7 +22,7 @@ function Home(): JSX.Element {
       {loading ? (
         <p></p>
       ) : (
-        <> {!city ? <Home_bez_gorod /> : <Home_gorod city={city} />}</>
+        <> {city ? <Home_gorod city={city} /> : <Home_bez_gorod />}</>
       )}
     </div>
   );

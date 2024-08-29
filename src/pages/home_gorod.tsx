@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { HStack, SimpleGrid, VStack } from "@chakra-ui/react";
+import { Button, HStack, SimpleGrid, VStack } from "@chakra-ui/react";
 import CardUI from "../ui/card/card";
 import cityData from "../data/home_gorod_data";
 import { transliterate } from "../components/translater/translater";
@@ -10,6 +10,10 @@ import MainBanner from "../ui/banner/main_banner";
 import Links from "../ui/links/links";
 import { useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
+import HorizontalCard from "../ui/horizontalCard/horizontalCard";
+import YandexMap from "../ui/map/map";
+import TopBNINBT from "../components/topBannerInBottom/topBNINBT";
+import Main_banner from "../ui/banner/main_banner";
 
 type Props = {
   city: string;
@@ -161,10 +165,32 @@ function HomeGorod({ city }: Props) {
     setIcon(item);
   };
 
+  useEffect(()=>{
+    const handleResize = () => {
+      const wiidht = window.innerWidth
+      console.log(wiidht);
+      if(768 > wiidht){
+        // setIcon("table")
+        handleActiveIcon('table')
+      }
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    // Clean up the event listener on component unmount
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+
+    
+  },[])
+
   if (!selectedCity) {
     return <p>Город не найден</p>;
   }
 
+
+  
   const renderCards = () => {
     switch (icon) {
       case "table":
@@ -177,17 +203,28 @@ function HomeGorod({ city }: Props) {
         );
       case "grid":
         return (
-          <SimpleGrid columns={{ base: 1, md: 2 }} spacing="24px">
+          <SimpleGrid w='100%' columns={1} spacing="8px">
             {selectedCity.saunas.map((nm, ind) => (
-              <CardUI accepted={true} data={nm} nmd={ind} key={ind} />
+              <HorizontalCard data={nm} nmd={ind} accepted={true} />
             ))}
           </SimpleGrid>
         );
       case "map":
         return (
-          <div>
-            <p>Map view is under development...</p>
+          <SimpleGrid w='100%' columns={2} spacing="20px" className="!hidden md:!grid">
+          <div className="left-cont">
+          <SimpleGrid columns={{ base: 1, lg: 2 }} spacing="20px" className="!gap-5 lg:!gap-2 xl:!gap-5">
+          {selectedCity.saunas.map((nm, ind) => (
+            <CardUI accepted={true} data={nm} nmd={ind} key={ind} />
+          ))}
+        </SimpleGrid>
           </div>
+          <div className="right-cont">
+            <div className="sticky top-2">
+            <YandexMap/>
+            </div>
+          </div>
+      </SimpleGrid>
         );
       default:
         return (
@@ -279,8 +316,20 @@ function HomeGorod({ city }: Props) {
           </div>
           <div className="eminem flex justify-center flex-col items-center">
             {renderCards()}
-            <div className="mt-12 hidden sm:block">
-              <MainBanner />
+            <Button className="mt-5 shadow-md w-full !bg-[#FFFFFF] text-[#3B4255] !rounded-xl">
+              Показать ещё
+            </Button>
+            <div className="mt-12">
+              <TopBNINBT
+                verHor={icon === "grid" ? true : false}
+                mapView={icon === "map" ? false : true}
+                lastHistory={true}
+                topMounth={false}
+                topWeek={false}
+              />
+             <div className="mnn hidden sm:block">
+             <Main_banner />
+             </div>
             </div>
           </div>
         </div>
