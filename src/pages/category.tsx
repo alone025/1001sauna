@@ -19,6 +19,7 @@ import Links from "../ui/links/links";
 import Discount from "../ui/discount/discount";
 import HorizontalCard from "../ui/horizontalCard/horizontalCard";
 import YandexMap from "../ui/map/map";
+import Advertiment from "../components/advertiment/advertiment";
 
 type IconProps = {
   isActive: boolean;
@@ -187,7 +188,7 @@ const Category = () => {
 
     window.addEventListener('resize', handleResize);
 
-    // Clean up the event listener on component unmount
+    
     return () => {
       window.removeEventListener('resize', handleResize);
     };
@@ -331,9 +332,7 @@ const Category = () => {
        <div className="flex flex-row gap-8">
        <div className="left-side hidden lg:flex flex-col gap-5">
           <Filter sticky={false} />
-          <img src="/assets/reklama1.png" alt="" />
-          <img src="/assets/reklama2.png" alt="" />
-          <img src="/assets/reklama3.png" alt="" />
+          <Advertiment/>
         </div>
         <div className="right-side w-full sm:mt-5">
           <div className="sort-div">

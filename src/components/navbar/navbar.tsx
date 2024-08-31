@@ -70,6 +70,7 @@ const Navbar: React.FC = (): JSX.Element => {
                   src="/assets/logo.png"
                   alt=""
                   className="cursor-pointer w-[105px] md:w-[172px]"
+                  onClick={()=> window.location.href = '/'}
                 />
                 <div className="md:flex items-center gap-2 cursor-pointer lg:w-[350px] hidden" onClick={()=>openNavbarModal()}>
                   <img src="/assets/map.png" alt="" />

@@ -11,7 +11,8 @@ const Footer = (): JSX.Element => {
 							<img
 								src='/assets/logo.png'
 								alt='logo'
-								className='block lg:hidden md:block w-[172px]'
+								className='block lg:hidden md:block w-[172px] cursor-pointer'
+								onClick={()=> window.location.href = '/'}
 							/>
 
 							<div className='flex flex-col mt-[32px] md:flex-col-reverse lg:flex-row md:mt-[48px] lg:mt-0 lg:gap-[50px] xl:gap-[80px] md:gap-0'>
@@ -19,7 +20,8 @@ const Footer = (): JSX.Element => {
 									<img
 										src='/assets/logo.png'
 										alt='logo'
-										className='hidden lg:block'
+										className='hidden lg:block cursor-pointer'
+										onClick={()=> window.location.href = '/'}
 									/>
 									<h4 className='text-[14px] text-white pt-[28px]'>
 										© 2019-2024 Все права защищены.
@@ -34,16 +36,16 @@ const Footer = (): JSX.Element => {
 									</h3>
 									<div className='flex flex-col md:flex-row items-start md:items-center gap-[24px] md:gap-[55px] pt-[24px]'>
 										<div className='flex flex-col gap-[24px] md:gap-[20px] text-white'>
-											<a href='#'>О нас</a>
-											<a href='#'>Вакансии</a>
+											<a href='/about'>О нас</a>
+											<a href='/vacancies'>Вакансии</a>
 										</div>
 										<div className='flex flex-col gap-[24px] md:gap-[20px] text-white'>
-											<a href='#'>Реклама</a>
+											<a href='/advertising'>Реклама</a>
 											<a href='#'>Карта сайта</a>
 										</div>
 										<div className='flex flex-col gap-[24px] md:gap-[20px] text-white'>
 											<a href='#'>Оплата</a>
-											<a href='#'>Контакты</a>
+											<a href='/our-contacts'>Контакты</a>
 										</div>
 									</div>
 								</div>

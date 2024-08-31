@@ -8,6 +8,7 @@ import CustomSwiper from "./components/swipper/swipper";
 import SwipperCardBottom from "./ui/swipperCard/swipperCard";
 import TextFooter from "./components/textFooter/textFooter";
 import Breadcromb from "./ui/breadcrumb/breadcromb";
+import { useLocation } from "react-router-dom";
 
 function App(): JSX.Element {
   const slides = [
@@ -17,7 +18,13 @@ function App(): JSX.Element {
     <SwipperCardBottom />,
   ];
 
-  const path = window.location.pathname;
+  // const path = window.location.pathname;
+
+  const location = useLocation();
+  const path = location.pathname;
+
+
+  const isCategoryPage = path.startsWith("/category");
 
   return (
     <>
@@ -34,7 +41,7 @@ function App(): JSX.Element {
         </div>
    
    {
-    (path !== "/" && path !== "/category-mmm" ) && (
+    (path !== "/" && isCategoryPage ) && (
       <div className="bread block sm:hidden mx-4 mt-5 sm:mt-6 mb-6 sm:mb-0 sm:mx-5 2xl:mx-0">
       <Breadcromb/>
         </div>
@@ -65,7 +72,7 @@ function App(): JSX.Element {
         )}
         <Main />
       </Wrapper>
-      {(path === "/" || path === "/category-mmm") && (
+      {(path === "/" || isCategoryPage) && (
         <>
           <div className="mnm block mt-8 sm:hidden ">
             <Main_banner />

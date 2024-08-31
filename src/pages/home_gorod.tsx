@@ -177,7 +177,6 @@ function HomeGorod({ city }: Props) {
 
     window.addEventListener('resize', handleResize);
 
-    // Clean up the event listener on component unmount
     return () => {
       window.removeEventListener('resize', handleResize);
     };
@@ -324,8 +323,8 @@ function HomeGorod({ city }: Props) {
                 verHor={icon === "grid" ? true : false}
                 mapView={icon === "map" ? false : true}
                 lastHistory={true}
-                topMounth={false}
-                topWeek={false}
+                topMounth={true}
+                topWeek={true}
               />
              <div className="mnn hidden sm:block">
              <Main_banner />
