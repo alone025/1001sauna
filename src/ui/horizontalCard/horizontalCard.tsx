@@ -208,7 +208,7 @@ function HorizontalCard({ accepted, nmd, data }: Props) {
             onClick={() => setOpnL(!opnL)}
             className="text-base cursor-pointer text-[#3B4255] font-OpenSans font-semibold leading-[140%]"
           >
-            {opnL ? "Из избранного" : "В избранное"}
+            {opnL ? "В избранном" : "В избранное"}
           </p>
         </div>
       </CardFooter>

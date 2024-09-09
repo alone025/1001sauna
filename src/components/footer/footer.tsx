@@ -41,10 +41,10 @@ const Footer = (): JSX.Element => {
 										</div>
 										<div className='flex flex-col gap-[24px] md:gap-[20px] text-white'>
 											<a href='/advertising'>Реклама</a>
-											<a href='#'>Карта сайта</a>
+											<a href='/site-map'>Карта сайта</a>
 										</div>
 										<div className='flex flex-col gap-[24px] md:gap-[20px] text-white'>
-											<a href='#'>Оплата</a>
+											<a href='/payment-policy'>Оплата</a>
 											<a href='/our-contacts'>Контакты</a>
 										</div>
 									</div>

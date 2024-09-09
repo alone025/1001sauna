@@ -12,6 +12,7 @@ type Props = {
   topWeek: boolean;
   topMounth: boolean;
   mapView: boolean;
+  top10: boolean
 };
 
 const TopBNINBT = ({
@@ -20,6 +21,7 @@ const TopBNINBT = ({
   topWeek,
   topMounth,
   mapView,
+  top10
 }: Props) => {
   const lotinHarf = transliterate("Москва");
   const selectedCity = cityData[lotinHarf].saunas.slice(0, 4);
@@ -83,6 +85,16 @@ const TopBNINBT = ({
           <h3 className="text-2xl lg:text-[27px] font-OpenSans font-semibold text-[#3B4255] mb-6 sm:mb-8" >Популярные бани и сауны Москвы за месяц</h3>
           <div className="content-cards flex justify-center items-center">
          
+            {renderCards()}
+          </div>
+        </div>
+      )}
+
+{top10 && (
+        <div className="lasthistory mt-8 sm:mt-12">
+          <h3 className="text-2xl lg:text-[27px] font-OpenSans font-semibold text-[#3B4255] mb-6 sm:mb-8" >ТОП-10:  Бани и сауны Москвы</h3>
+          <div className="content-cards flex justify-center items-center">
+      
             {renderCards()}
           </div>
         </div>

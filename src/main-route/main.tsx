@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useLocation } from "react-router-dom";
 import Home from "../pages/home";
 import Liked from "../pages/liked";
 import Category from "../pages/category";
@@ -10,9 +10,13 @@ import Vacancies from "../pages/vacancies";
 import PrivatePolicy from "../pages/private-policy";
 import Contact from "../pages/contact";
 import Payment from "../pages/payment";
+import KartaSayta from "../pages/kartaSayta";
 function Main(): JSX.Element {
+ const pathName = useLocation()
+ const liok = pathName.pathname.includes('product')
+
   return (
-    <div className="main-content mx-4 sm:mx-[20px] 2xl:mx-0">
+    <div  className={`main-content ${liok ? "mx-0":"mx-4"} sm:mx-[20px] 2xl:mx-0`}>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/liked-card" element={<Liked />} />
@@ -70,6 +74,15 @@ function Main(): JSX.Element {
           element={
             <PageLayout>
               <Payment />
+            </PageLayout>
+          }
+        />
+
+<Route
+          path="/site-map"
+          element={
+            <PageLayout>
+              <KartaSayta />
             </PageLayout>
           }
         />

@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import BankModal from "../ui/modal/bankModal";
 import CardModal from "../ui/modal/cardModal";
+import CheckModal from "../ui/modal/checkModal";
 
 
 const Payment = () => {
@@ -52,6 +53,7 @@ const priceDatas = [
 
 const [opend, setOpend] = useState(false)
 const [opendCard, setOpendCard] = useState(false)
+const [checked, setChecked] = useState(false)
 
 const handleOpend = () =>  {
     setOpend(false)
@@ -116,7 +118,7 @@ const handleOpendOpendCard = () =>  {
 							exit={{ y: 50, opacity: 0 }}
 							transition={{ duration: 0.3 }}
 						>
-							<BankModal closeModal={handleOpend} />
+							<BankModal openCheck={()=> setChecked(true)} closeModal={handleOpend} />
 						</motion.div>
 					</motion.div>
 				)}
@@ -142,6 +144,7 @@ const handleOpendOpendCard = () =>  {
 					</motion.div>
 				)}
 			</AnimatePresence>
+            <CheckModal onClose={()=> setChecked(false)} isOpen={checked} />
     </div>
   )
 }

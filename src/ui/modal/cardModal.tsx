@@ -19,7 +19,7 @@ const CardModal = ({ closeModal }: Props) => {
             onClick={closeModal}
           />
         </div>
-        <div className="flex flex-col w-full gap-3 overflow-auto h-[30vh] lg:h-auto">
+        <div className="flex flex-col w-full gap-3 overflow-auto h-[30vh] 2xl:h-auto">
           <p className="text-[#3B4255] text-[14px] sm:text-[15px] md:text-base font-OpenSans font-normal leading-[140%]">
             Обращаем внимание, что бронь принимается только после того, как наш
             сотрудник свяжется с Вами. Просьба указывать правильный номер
@@ -46,7 +46,7 @@ const CardModal = ({ closeModal }: Props) => {
             БЕСПЛАТНЫЙ по РФ.
           </p>
         </div>
-        <div className="bg-div bg-[#4C4C4C] w-full h-[176px] rounded-2xl mb-8 mt-6 md:h-[360px] lg:h-[333px]"></div>
+        <div className="bg-div bg-[#4C4C4C] w-full h-[176px] md:h-[216px] rounded-2xl mb-8 mt-6 lg:h-[360px] xl:h-[300px]"></div>
       </div>
     </div>
   );

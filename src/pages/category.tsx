@@ -433,6 +433,7 @@ const Category = () => {
             </Button>
             <div className="mt-12">
               <TopBNINBT
+              top10={false}
                 verHor={icon === "grid" ? true : false}
                 mapView={icon === "map" ? false : true}
                 lastHistory={true}

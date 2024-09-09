@@ -14,7 +14,7 @@ function Home(): JSX.Element {
       setCity(storedData);
       setLoading(false)
     } 
-    
+    setLoading(false)
   }, []);
 
   return (
