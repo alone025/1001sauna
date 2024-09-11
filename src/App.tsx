@@ -24,7 +24,7 @@ function App(): JSX.Element {
   const path = location.pathname;
 
 
-  const isCategoryPage = path.startsWith("/category") && path.includes('/product');
+  const isCategoryPage = path.startsWith("/category") && !path.includes('/product');
 
   return (
     <>

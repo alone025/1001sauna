@@ -5,15 +5,13 @@ interface ImageData {
     id: number;
     src: string;
     alt: string;
-    seat: number;
   }
 
 interface SwiperProps {
   slides: ImageData[];
-  onOpen: ()=> void
 }
 
-const Swiper: React.FC<SwiperProps> = ({ slides, onOpen }) => {
+const SwiperSaunaNomer: React.FC<SwiperProps> = ({ slides }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const handlers = useSwipeable({
@@ -30,22 +28,29 @@ const Swiper: React.FC<SwiperProps> = ({ slides, onOpen }) => {
   };
 
   return (
-    <div className="w-full mx-auto rounded-b-2xl bg-white shadow-sm pb-5">
- 
+    <div className="w-full mx-auto sm:rounded-2xl overflow-hidden">
+   
       <div {...handlers} className="relative w-full overflow-hidden">
+      <svg onClick={handlePrev} className='p-1 bg-[#3B4255] hidden sm:block cursor-pointer rounded-full absolute top-1/2 left-6 z-10' xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
+  <path d="M20 24L12 16L20 8" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
         <div
           className="flex transition-transform duration-500 ease-in-out"
           style={{ transform: `translateX(-${currentIndex * 100}%)` }}
         >
           {slides.map((slide, index) => (
-            <div key={index} onClick={onOpen} className="w-full flex-shrink-0">
-              <img src={slide.src} alt={`Slide ${index}`} className="w-full cursor-pointer h-[210px] object-cover" />
+            <div key={index} className="w-full flex-shrink-0">
+              <img src={slide.src} alt={`Slide ${index}`} className="w-full cursor-pointer h-[330px] object-cover" />
             </div>
           ))}
         </div>
+        <svg onClick={handleNext} className='p-1 bg-[#3B4255] hidden sm:block cursor-pointer rounded-full absolute top-1/2 right-6 z-10' xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
+  <path d="M12 24L20 16L12 8" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
       </div>
 
-      <div className="flex justify-center space-x-2 mt-4">
+   
+      <div className="flex sm:hidden justify-center space-x-2 mt-4">
         {slides.map((_, index) => (
           <button
             key={index}
@@ -64,4 +69,4 @@ const Swiper: React.FC<SwiperProps> = ({ slides, onOpen }) => {
   );
 };
 
-export default Swiper;
+export default SwiperSaunaNomer;

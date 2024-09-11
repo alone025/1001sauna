@@ -1,5 +1,5 @@
 
-const NomerSauni = () => {
+const NomerSauni = ({onOpenNomer}: {onOpenNomer:()=>void}) => {
   return (
 <div className="nomerSauni-content p-4 sm:p-6 rounded-2xl bg-white shadow-sm">
     <h3 className="text-xl lg:text-2xl text-[#4C4C4C] font-OpenSans font-semibold mb-6 mt-1 sm:mt-0">Номера и залы <span className="visible sm:invisible">(8)</span></h3>
@@ -29,7 +29,7 @@ const NomerSauni = () => {
 </svg>
                 <p className="hidden lg:block font-semibold">1350 ₽/чаc</p>
 
-              <div className="tabse flex flex-wrap gap-[5px]">
+              <div className="tabse flex sm:hidden flex-wrap gap-[5px]">
                 <div className="tabe px-3 p-[10px] bg-[#F8F8F8] rounded-lg w-max">
                   <p className="text-sm font-OpenSans font-normal text-[#3B4255]">Русская</p>
                 </div>
@@ -50,7 +50,7 @@ const NomerSauni = () => {
             <div className="righter mt-3 sm:mt-4 lg:mt-0">
            
                 <p className="block lg:hidden font-semibold text-[18px] sm:text-base font-OpenSans text-[#3B4255] mb-4">1350 ₽/чаc</p>
-                <button className="border border-solid hover:bg-[#FF7A01] hover:text-white transition-colors border-[#FF7A01] rounded-xl bg-white px-6 py-2 text-[#FF7A01] text-[14px] font-OpenSans font-semibold">Подробнее</button>
+                <button onClick={onOpenNomer} className="border border-solid hover:bg-[#FF7A01] hover:text-white transition-colors border-[#FF7A01] rounded-xl bg-white px-6 py-2 text-[#FF7A01] text-[14px] font-OpenSans font-semibold">Подробнее</button>
             </div>
         </div>
         ))}

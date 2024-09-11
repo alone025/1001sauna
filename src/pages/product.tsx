@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Advertiment from "../components/advertiment/advertiment";
 import DrugiyRecomend from "../components/drugiyRecommend/drugiyRecomend";
 import ThumbsGallery from "../components/imageSlider/imageSlider";
@@ -12,7 +13,9 @@ import VkMb from "../components/vkMb/vkMb";
 import UslugiProduct from "../components/xizmatlarProduct/uslugiProduct";
 import BottomMenu from "../ui/bottommenu/bottomMenu";
 import YandexMap from "../ui/map/map";
+import ModileContent from "../ui/sliderModal/modileContent";
 import SwiperShort from "../ui/swipperShort/swipperShort";
+import NomerSauna from "../ui/nomerS/nomerSauna";
 
 
 function Svgs() {
@@ -178,14 +181,31 @@ const Product = () => {
     },
   ]
 
+  const [isOpen , setIsOpen] = useState(false)
 
+  const onClose = () => {
+      setIsOpen(false)
+  }
 
+  const onOpen = ()=>{
+    setIsOpen(true)
+  }
+
+  const [isOpenNomer, setIsOpenNomer] = useState(false)
+
+const onCloseNomer = ()=>{
+  setIsOpenNomer(false)
+}
+
+const onOpenNomer = ()=>{
+  setIsOpenNomer(true)
+}
 
   return (
    <>
     <div className="product-main-page mt-8 flex flex-col lg:flex-row gap-5">
       <div className="mlkjnh block sm:hidden">
-      <SwiperShort slides={images} />
+      <SwiperShort onOpen={onOpen} slides={images} />
       </div>
       <div className="left-cont lg:max-w-[300px] xl:max-w-none flex flex-col gap-5">
         <div className="mni-cona">
@@ -205,7 +225,7 @@ const Product = () => {
         
         <div className="top-head hidden sm:flex flex-row gap-5">
           <div className="lth flex flex-col gap-5">
-            <ThumbsGallery images={images} />
+            <ThumbsGallery onOpen={onOpen} images={images} />
             <Videoplayer />
           </div>
           <div className="rth flex flex-col gap-5 max-w-[300px] xl:max-w-[350px]">
@@ -244,7 +264,7 @@ const Product = () => {
           <div className="advertiments-pr hidden sm:flex lg:hidden">
           <Advertiment/>
         </div>
-          <NomerSauni/>
+          <NomerSauni onOpenNomer={onOpenNomer}/>
           <div className="onash p-4 sm:p-6 rounded-2xl bg-white shadow-sm">
                 <h3 className="text-xl lg:text-2xl font-OpenSans font-semibold text-[#4C4C4C]">О нас</h3>
                 <div className="contentesh mt-5 sm:mt-6 flex flex-col gap-5">
@@ -292,6 +312,9 @@ const Product = () => {
           </div>
           <VkMb/>
           <div className="block sm:hidden">
+          <Otzivi/>
+          </div>
+          <div className="block sm:hidden">
           <DrugiyRecomend  anything txt='Другие наши заведения' />
           </div>
           <div className="mobile-section-0 block sm:hidden bg-white rounded-2xl shadow-sm py-5">
@@ -304,6 +327,8 @@ const Product = () => {
     </div>
     <TopBNINBT top10={true} verHor={false} lastHistory={true} topMounth={false} topWeek={false} mapView={false} />
     <BottomMenu/>
+    <ModileContent isOpen={isOpen} onClose={onClose}/>
+    <NomerSauna isOpen={isOpenNomer} onClose={onCloseNomer} />
    </>
   );
 };

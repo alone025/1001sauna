@@ -23,8 +23,25 @@ const CustomSwiper: React.FC<{ items: React.ReactNode[]; autoPlay?: boolean; aut
         setSlidesToShow(1);
       } else if (screenWidth < 1024) {
         setSlideWidth('700px'); 
-        setSlidesToShow(1);
-      } else {
+        setSlidesToShow(1.2);
+      } 
+      else if (screenWidth < 1050) {
+        setSlideWidth('658px'); 
+        setSlidesToShow(1.5);
+      }
+      else if (screenWidth < 1300) {
+        setSlideWidth('658px'); 
+        setSlidesToShow(2);
+      }
+      else if (screenWidth < 1590) {
+        setSlideWidth('658px'); 
+        setSlidesToShow(3);
+      }
+      else if (screenWidth < 1610) {
+        setSlideWidth('658px'); 
+        setSlidesToShow(4);
+      }
+      else {
         setSlideWidth('650px'); 
         setSlidesToShow(5);
       }

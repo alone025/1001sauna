@@ -7,7 +7,7 @@ interface ImageData {
   seat: number;
 }
 
-const ThumbsGallery: React.FC<{ images: ImageData[] }> = ({ images }) => {
+const ThumbsGallery: React.FC<{ images: ImageData[], onOpen: ()=>void }> = ({ images, onOpen }) => {
   const [index, setIndex] = useState(0);
   const [selectedImage, setSelectedImage] = useState<ImageData>(images[0]);
 
@@ -37,8 +37,9 @@ const ThumbsGallery: React.FC<{ images: ImageData[] }> = ({ images }) => {
       <div className="mb-4">
         <img
           src={selectedImage.src}
+          onClick={onOpen}
           alt={selectedImage.alt}
-          className="w-full max-w-[712px] max-h-[400px] h-[400px] object-cover rounded-2xl"
+          className="w-full cursor-pointer max-w-[712px] max-h-[400px] h-[400px] object-cover rounded-2xl"
         />
       </div>
 
