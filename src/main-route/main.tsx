@@ -11,6 +11,9 @@ import PrivatePolicy from "../pages/private-policy";
 import Contact from "../pages/contact";
 import Payment from "../pages/payment";
 import KartaSayta from "../pages/kartaSayta";
+import CreateSauna from "../pages/createSauna";
+
+
 function Main(): JSX.Element {
  const pathName = useLocation()
  const liok = pathName.pathname.includes('product')
@@ -83,6 +86,15 @@ function Main(): JSX.Element {
           element={
             <PageLayout>
               <KartaSayta />
+            </PageLayout>
+          }
+        />
+
+<Route
+          path="/add-own-sauna"
+          element={
+            <PageLayout>
+              <CreateSauna />
             </PageLayout>
           }
         />

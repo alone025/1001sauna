@@ -16,6 +16,16 @@ import YandexMap from "../ui/map/map";
 import ModileContent from "../ui/sliderModal/modileContent";
 import SwiperShort from "../ui/swipperShort/swipperShort";
 import NomerSauna from "../ui/nomerS/nomerSauna";
+import CreateOtziv from "../ui/createOtziv/createOtziv";
+import Success from "../ui/createOtziv/success";
+import OfferSauna from "../ui/offerSauna/offerSauna";
+import SuccesFul from "../ui/offerSauna/succesFul";
+import Vladeles from "../ui/vladales/vladeles";
+import GlobalCheck from "../ui/globalCheck/globalCheck";
+import Jaloba from "../ui/jaloba/jaloba";
+import OshibkaKastum from "../ui/oshibkaModal/oshibkaModal";
+import Pazvoniy from "../ui/pozvonit/pozvonit";
+import KartaP from "../ui/pozvonit/kartaP";
 
 
 function Svgs() {
@@ -201,6 +211,88 @@ const onOpenNomer = ()=>{
   setIsOpenNomer(true)
 }
 
+const [createOtzivFunc, setCreateOtzivFunc] = useState(false)
+const [successOtziv, setSuccessOtziv] = useState(false)
+
+const onCloseOtzivC = ()=>{
+  setCreateOtzivFunc(false)
+}
+
+const onCloseSuccess = ()=>{
+  setSuccessOtziv(false)
+}
+
+const onOpenSuccess = ()=>{
+  setCreateOtzivFunc(false)
+  setSuccessOtziv(true)
+}
+
+const onOpenOtzivC = ()=>{
+  setCreateOtzivFunc(true)
+}
+
+const [zabronit, setZabronit] = useState(false)
+
+const openZabronit = () => {
+  setZabronit(true)
+}
+
+const closeZabronit = () => {
+  setZabronit(false)
+}
+
+const [zabronitDone, setZabronitDone] = useState(false)
+
+const openZabronitDone = () => {
+  setZabronit(false)
+  setZabronitDone(true)
+}
+
+const closeZabronitDone = () => {
+  setZabronitDone(false)
+}
+
+const [vladelese, setVladelese] = useState(false)
+
+const [jalobaMk, setJalobMk] = useState(false)
+
+const [globalCheck, setGlobalCheck] = useState(false)
+
+const [jalobaOtziv, setJalobaOtziv] = useState(false)
+
+const closeGlobalcheck = () => {
+  setZabronitDone(false)
+  setZabronit(false)
+  setJalobMk(false)
+  setJalobaOtziv(false)
+  setGlobalCheck(true)
+}
+
+
+const [pozvonit, setPozvonit] = useState(false) 
+
+const jalobaPozvonit = () =>{
+  setPozvonit(false)
+  setJalobMk(true)
+}
+
+
+const pozvonitOpen = () => {
+  setPozvonit(true)
+}
+
+
+const [pozvonitKarta, setPozvonitKarta] = useState(false) 
+
+const pozvonitKartaOpen = () => {
+  setPozvonit(false)
+  setPozvonitKarta(true)
+}
+
+const pozvonitKartaClose = () => {
+  setPozvonitKarta(false)
+}
+
   return (
    <>
     <div className="product-main-page mt-8 flex flex-col lg:flex-row gap-5">
@@ -209,7 +301,7 @@ const onOpenNomer = ()=>{
       </div>
       <div className="left-cont lg:max-w-[300px] xl:max-w-none flex flex-col gap-5">
         <div className="mni-cona">
-          <MiniContent/>
+          <MiniContent openZabronit={openZabronit} pozvonitOpen={pozvonitOpen} />
         </div>
         <div className="materiali hidden lg:block">
           <PolezniyM/>
@@ -305,14 +397,14 @@ const onOpenNomer = ()=>{
           <Svgs />
         </div>
         <div className="hidden sm:block">
-          <Otzivi/>
+          <Otzivi onOpenOtzivC={onOpenOtzivC}/>
           </div>
           <div className="hidden sm:block">
           <DrugiyRecomend  anything txt='Другие наши заведения' />
           </div>
           <VkMb/>
           <div className="block sm:hidden">
-          <Otzivi/>
+          <Otzivi onOpenOtzivC={onOpenOtzivC}/>
           </div>
           <div className="block sm:hidden">
           <DrugiyRecomend  anything txt='Другие наши заведения' />
@@ -329,6 +421,16 @@ const onOpenNomer = ()=>{
     <BottomMenu/>
     <ModileContent isOpen={isOpen} onClose={onClose}/>
     <NomerSauna isOpen={isOpenNomer} onClose={onCloseNomer} />
+    <CreateOtziv onOpenSuccess={onOpenSuccess} isOpen={createOtzivFunc} onClose={onCloseOtzivC}/>
+    <Success isOpen={successOtziv} onClose={onCloseSuccess} />
+    <OfferSauna isOpen={zabronit} onClose={closeZabronit} onOpenSuccess={openZabronitDone} />
+    <SuccesFul isOpen={zabronitDone} onClose={closeZabronitDone}/>
+    <Vladeles isOpen={vladelese} onClose={()=>setVladelese(false)} onOpenSuccess={closeGlobalcheck}  />
+      <GlobalCheck isOpen={globalCheck} onClose={()=>setGlobalCheck(false)}/>
+        <Jaloba isOpen={jalobaMk} onClose={()=> setJalobMk(false)} onOpenSuccess={closeGlobalcheck} />
+          <OshibkaKastum isOpen={jalobaOtziv} onClose={()=> setJalobaOtziv(false)} onOpenSuccess={closeGlobalcheck} />
+            <Pazvoniy onMap={pozvonitKartaOpen} isOpen={pozvonit} onClose={()=> setPozvonit(false)}  onOpenSuccess={jalobaPozvonit}/>
+              <KartaP isOpen={pozvonitKarta} onClose={pozvonitKartaClose}/>
    </>
   );
 };

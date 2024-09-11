@@ -148,6 +148,23 @@ const YandexMap: React.FC = () => {
   
   // };
 
+  const [userLocation, setUserLocation] = useState<[number, number] | null>(
+    null
+  );
+
+
+  const handleGeolocationSuccess = (coords: [number, number]) => {
+    setUserLocation(coords);
+    if (mapRef.current) {
+      mapRef.current.setCenter(coords, 14, {
+        checkZoomRange: true,
+        duration: 300,
+      });
+    }
+  };
+
+
+
   return (
     <YMaps>
       <div className="mapprint" id="mapPrintContainer">
@@ -221,10 +238,34 @@ const YandexMap: React.FC = () => {
                     <div></div>
                   </Tooltip>
                 )} */}
+                {userLocation && (
+              <Placemark
+                geometry={userLocation}
+                options={{
+                  iconLayout: "default#image",
+                  iconImageHref: "/assets/pin-map.png", // Custom icon for user location
+                  iconImageSize: [30, 30],
+                  iconImageOffset: [-15, -15],
+                }}
+              />
+            )}
     </React.Fragment>
             ))}
             <RulerControl options={{ position: { top: 85, right: 15 }, scaleLine:false }} />
-            <GeolocationControl options={{ position: { top: 135, right: 15 } }} />
+            <GeolocationControl options={{ position: { top: 135, right: 15 } }}  instanceRef={(ref) => {
+                if (ref) {
+                  ref.events.add("locationchange", (event) => {
+                    const coords = event.get("position");
+                    console.log(coords);
+                    
+                    handleGeolocationSuccess(coords);
+                  });
+                  ref.events.add("locationerror", (event) => {
+                    console.error("Geolocation error:", event.get("message"));
+                  });
+                }
+              }}
+ />
             <ZoomControl options={{ position: { top: 185, right: 15 }, size:"small", zoomDuration:300 }}/>
             {showTraffic && <TrafficControl classname="transition-transform" options={{ position : {right:"65px", top: "15px"} }} />}
             {showMapType && <TypeSelector classname="transition-transform" options={{ position : {right:"165px", top: "15px"} }} />}

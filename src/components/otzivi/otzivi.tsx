@@ -9,7 +9,7 @@ function DisLike() {
   return <Image src="/assets/dislike-icon.svg" alt="like-icon" />;
 }
 
-const Otzivi = () => {
+const Otzivi = ({onOpenOtzivC}: {onOpenOtzivC: ()=>void}) => {
 
     const [commentOpen, setOpenComment] = useState<number | null>(null)
 
@@ -59,7 +59,7 @@ const Otzivi = () => {
         <h3 className="text-xl sm:text-2xl font-OpenSans font-semibold text-[#3B4255]">
           Отзывы посетителей
         </h3>
-        <button className="bg-[#FF7A01] hidden sm:block px-8 lg:px-12 py-3 rounded-xl text-base text-white font-OpenSans font-semibold hover:bg-[#ff7c01da]">
+        <button onClick={onOpenOtzivC} className="bg-[#FF7A01] hidden sm:block px-8 lg:px-12 py-3 rounded-xl text-base text-white font-OpenSans font-semibold hover:bg-[#ff7c01da]">
           Оставить отзыв
         </button>
       </div>
@@ -111,6 +111,7 @@ const Otzivi = () => {
                     </p>
                     <div className="otvetit flex flex-row justify-between items-center">
                       <Button
+                      onClick={onOpenOtzivC}
                         variant="ghost"
                         className="!text-[#FF7A01] !text-base !font-OpenSans relative -left-3 !font-semibold"
                       >
@@ -213,7 +214,7 @@ const Otzivi = () => {
                   <p className="text-[14px] sm:text-base font-OpenSans font-normal text-[#3B4255]">
                     {msk.picksel}
                   </p>
-                  <p className="text-sm text-[#3B4255] font-OpenSans font-semibold mt-3" >Ответить</p>
+                  <p className="text-sm text-[#3B4255] font-OpenSans font-semibold mt-3" onClick={onOpenOtzivC} >Ответить</p>
                 </div>
                 </div>
               ))}</>
@@ -243,7 +244,7 @@ const Otzivi = () => {
           />
         </svg>
       </div>
-      <button className="bg-[#FF7A01] block sm:hidden w-full px-6 py-3 mt-5 rounded-xl text-base text-white font-OpenSans font-semibold hover:bg-[#ff7c01da]">
+      <button onClick={onOpenOtzivC} className="bg-[#FF7A01] block sm:hidden w-full px-6 py-3 mt-5 rounded-xl text-base text-white font-OpenSans font-semibold hover:bg-[#ff7c01da]">
           Оставить отзыв
         </button>
     </div>

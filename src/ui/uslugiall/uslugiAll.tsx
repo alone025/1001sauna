@@ -8,9 +8,6 @@ const UslugiAll = ({isOpen, onClose}:{isOpen:boolean, onClose:()=>void}) => {
 
 
   return (
-
-         
-      
             <Modal size='full'   isOpen={isOpen} onClose={onClose}>
               <ModalOverlay />
               <ModalContent className="!p-0 !py-6 sm:!p-8 " >

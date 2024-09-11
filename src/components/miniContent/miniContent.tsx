@@ -188,7 +188,7 @@ function Svgs() {
   );
 }
 
-const MiniContent = () => {
+const MiniContent = ({openZabronit, pozvonitOpen}: {openZabronit: ()=>void, pozvonitOpen: ()=>void}) => {
   const FireIcon = () => {
     return (
       <svg
@@ -338,10 +338,10 @@ const MiniContent = () => {
           1600 - 2000 ₽/час
         </h3>
         <div className="btns flex flex-col sm:flex-row lg:flex-col gap-2 mt-6">
-          <button className="bg-[#FF7A01] h-12 w-full sm:max-w-[298px] lg:max-w-none rounded-xl px-6 py-2 text-[14px] sm:text-base text-white font-OpenSans font-semibold">
+          <button onClick={pozvonitOpen} className="bg-[#FF7A01] h-12 w-full sm:max-w-[298px] lg:max-w-none rounded-xl px-6 py-2 text-[14px] sm:text-base text-white font-OpenSans font-semibold">
             Позвонить
           </button>
-          <button className="bg-[#FFF] border h-12 border-[#CCCCCC] w-full sm:max-w-[298px] lg:max-w-none rounded-xl px-6 py-2 text-[14px] sm:text-base text-[#3B4255] hover:bg-[#FFF3DE] hover:border-[#FFF3DE] transition-colors font-OpenSans font-semibold">
+          <button onClick={openZabronit} className="bg-[#FFF] border h-12 border-[#CCCCCC] w-full sm:max-w-[298px] lg:max-w-none rounded-xl px-6 py-2 text-[14px] sm:text-base text-[#3B4255] hover:bg-[#FFF3DE] hover:border-[#FFF3DE] transition-colors font-OpenSans font-semibold">
             Забронировать
           </button>
           <div className="like-unlike flex sm:ml-3 lg:hidden flex-row items-center justify-center gap-4">
