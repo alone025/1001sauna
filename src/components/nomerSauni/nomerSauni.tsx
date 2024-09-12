@@ -4,10 +4,11 @@ const NomerSauni = ({onOpenNomer}: {onOpenNomer:()=>void}) => {
 <div className="nomerSauni-content p-4 sm:p-6 rounded-2xl bg-white shadow-sm">
     <h3 className="text-xl lg:text-2xl text-[#4C4C4C] font-OpenSans font-semibold mb-6 mt-1 sm:mt-0">Номера и залы <span className="visible sm:invisible">(8)</span></h3>
     <div className="cardsae flex flex-col gap-[10px] sm:gap-1">
-        {[0,1,2,3].map((mc, mk)=> (
-            <div key={mk} className="cardaz flex flex-col lg:flex-row justify-between p-4 sm:px-5 sm:py-3 rounded-lg border border-[#CCCCCC] bg-white">
+        {[0,1,2,3].map((mc)=> (
+            <div key={mc} className="cardaz flex flex-col lg:flex-row justify-between p-4 sm:px-5 sm:py-3 rounded-lg border border-[#CCCCCC] bg-white">
             <div className="lefter flex flex-col sm:flex-row gap-3 sm:items-center text-[14px] sm:text-base font-OpenSans font-normal text-[#3B4255]">
                 <p className="font-semibold text-[18px] sm:text-base" >Хамам</p>
+
                 <svg className="hidden sm:block" xmlns="http://www.w3.org/2000/svg" width="4" height="22" viewBox="0 0 4 22" fill="none">
   <circle cx="2" cy="11" r="2" fill="#CCCCCC"/>
 </svg>

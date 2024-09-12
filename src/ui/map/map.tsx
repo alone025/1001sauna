@@ -7,8 +7,7 @@ import {
   RulerControl,
   GeolocationControl,
   ZoomControl,
-  TypeSelector,
-  TrafficControl,
+
 } from "@pbe/react-yandex-maps";
 import { HamburgerIcon } from "@chakra-ui/icons";
 import { Box, Button, ButtonGroup, CloseButton, Popover, PopoverArrow, PopoverBody, PopoverCloseButton, PopoverContent, PopoverHeader, PopoverTrigger, Text,  useToast } from "@chakra-ui/react";
@@ -194,8 +193,26 @@ const YandexMap: React.FC = () => {
             id="mapContainer"
             height="450px"
             instanceRef={(ref) => {
-              mapRef.current = ref;
+              if (ref) {
+                mapRef.current = ref;
+                
+                // Dynamically add controls with position
+                ref.controls.remove("trafficControl");
+                ref.controls.remove("typeSelector");
+                
+                if (showTraffic) {
+                  ref.controls.add("trafficControl", {
+                    position: { top: 10, right: 10 } // Custom position
+                  });
+                }
+                if (showMapType) {
+                  ref.controls.add("typeSelector", {
+                    position: { top: 10, right: 120 } // Custom position
+                  });
+                }
+              }
             }}
+          
             options={{
               suppressMapOpenBlock: true, 
             }}
@@ -267,8 +284,8 @@ const YandexMap: React.FC = () => {
               }}
  />
             <ZoomControl options={{ position: { top: 185, right: 15 }, size:"small", zoomDuration:300 }}/>
-            {showTraffic && <TrafficControl classname="transition-transform" options={{ position : {right:"65px", top: "15px"} }} />}
-            {showMapType && <TypeSelector classname="transition-transform" options={{ position : {right:"165px", top: "15px"} }} />}
+            {/* {showTraffic && <TrafficControl classname="transition-transform" options={{ position : {right:"65px", top: "15px"} }} />}
+            {showMapType && <TypeSelector classname="transition-transform" options={{ position : {right:"165px", top: "15px"} }} />} */}
             
           </Map>
 

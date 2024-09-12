@@ -6,9 +6,7 @@ import { transliterate } from "../components/translater/translater";
 
 import Filter from "../ui/filter/filter";
 import Discount from "../ui/discount/discount";
-import MainBanner from "../ui/banner/main_banner";
 import Links from "../ui/links/links";
-import { useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import HorizontalCard from "../ui/horizontalCard/horizontalCard";
 import YandexMap from "../ui/map/map";
@@ -150,7 +148,7 @@ const GridIcon = ({ isActive }: IconProps) => (
 function HomeGorod({ city }: Props) {
   const lotinHarf = transliterate(city);
   const selectedCity = cityData[lotinHarf];
-  const location = useLocation();
+  
   const [icon, setIcon] = useState<string | null>(null);
 
   useEffect(() => {

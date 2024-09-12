@@ -9,7 +9,7 @@ const CustomSwiper: React.FC<{ items: React.ReactNode[]; autoPlay?: boolean; aut
   autoPlayInterval = 3000,
 }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const autoPlayRef = useRef<NodeJS.Timeout | null>(null);
+  const autoPlayRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const startX = useRef<number>(0);
   const isDragging = useRef<boolean>(false);
   const [slideWidth, setSlideWidth] = useState<string>('100%'); 
