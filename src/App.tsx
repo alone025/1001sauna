@@ -98,7 +98,7 @@ function App(): JSX.Element {
             <CustomSwiper
               items={slides}
               autoPlay={true}
-              autoPlayInterval={4000}
+              autoPlayInterval={40000}
             />
           </div>
           <Wrapper>
