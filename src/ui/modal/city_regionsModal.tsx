@@ -100,7 +100,7 @@ const City_regionsModal = ({ setCity, setModal }: Props) => {
                 </Tag>
               ))}
             </div>
-            <div className="regions flex flex-row justify-between flex-wrap gap-10 mt-8">
+            <div className="regions grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 justify-between flex-wrap gap-10 mt-8">
               {/* <div className="region flex flex-row gap-4 items-start">
                 <div className="letter">
                   <p className="text-[21px] font-OpenSans font-semibold text-white">

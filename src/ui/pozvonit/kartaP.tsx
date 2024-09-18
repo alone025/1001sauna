@@ -17,14 +17,14 @@ import YandexMap from "../map/map";
 
 
     return (
-      <Modal size="xl" isOpen={isOpen} onClose={onClose}>
+      <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
-        <ModalContent className="">
+        <ModalContent className="!max-w-[700px] lg:!max-w-[860px]">
           <div className="lg-tex !px-4 !pb-0 !py-6 sm:!p-8 sm:!pb-0 flex flex-row justify-between gap-10">
           <div className="txte flex flex-col gap-2">
             <p className="text-sm sm:text-base text-[#3B4255] font-OpenSans font-normal">Банный комплекс</p>
           <h3 className="text-xl lg:text-2xl text-[#3B4255] font-OpenSans font-semibold">
-            Оставить жалобу
+          Воронцовские бани
             </h3>
           </div>
             <svg

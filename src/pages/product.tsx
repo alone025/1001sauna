@@ -296,7 +296,7 @@ const pozvonitKartaClose = () => {
   return (
    <>
     <div className="product-main-page mt-8 flex flex-col lg:flex-row gap-5">
-      <div className="mlkjnh block sm:hidden">
+      <div id="photo_ml" className="mlkjnh block sm:hidden">
       <SwiperShort onOpen={onOpen} slides={images} />
       </div>
       <div className="left-cont lg:max-w-[300px] xl:max-w-none flex flex-col gap-5">
@@ -356,6 +356,29 @@ const pozvonitKartaClose = () => {
           <div className="advertiments-pr hidden sm:flex lg:hidden">
           <Advertiment/>
         </div>
+        <div className="card-skidki p-4 sm:p-6 rounded-2xl bg-[#FF7A01] shadow-md flex sm:hidden flex-col gap-4 sm:gap-5 lg:gap-0">
+              <div className="tope-m flex flex-col gap-5 lg:gap-0">
+                <h3 className="text-xl lg:text-2xl font-OpenSans font-semibold text-white">
+                  Скидки и акции
+                </h3>
+                <p className="text-[14px] sm:text-base font-OpenSans font-normal text-white flex flex-col lg:mb-[30px] lg:mt-[27px]">
+                  При заказе 4-х часов, 2 часа в подарок!
+                  <span>
+                    (действует с понеделньника по пятницу с 09.00 до 17.00 и с
+                    24.00 до 06.00)
+                  </span>
+                </p>
+              </div>
+              <hr className="opacity-30" />
+              <p className="text-[14px] sm:text-base font-OpenSans font-normal text-white lg:my-[23px]">
+                В воскресенье с 17.00 до 09.00 утра понедельника, скидка -50% на
+                все номера!
+              </p>
+              <hr className="opacity-30" />
+              <p className="text-[14px] sm:text-base font-OpenSans font-normal text-white lg:mt-5 lg:mb-1">
+                Именинникам скидка -10% (действует 7 дней до и 7 дней после)
+              </p>
+            </div>
           <NomerSauni onOpenNomer={onOpenNomer}/>
           <div className="onash p-4 sm:p-6 rounded-2xl bg-white shadow-sm">
                 <h3 className="text-xl lg:text-2xl font-OpenSans font-semibold text-[#4C4C4C]">О нас</h3>
@@ -417,8 +440,10 @@ const pozvonitKartaClose = () => {
         </div>
       </div>
     </div>
+    <div className="mx-3 sm:mx-0">
     <TopBNINBT top10={true} verHor={false} lastHistory={true} topMounth={false} topWeek={false} mapView={false} />
-    <BottomMenu/>
+    </div>
+    <BottomMenu brond={openZabronit} disabled={true} telModal={pozvonitOpen}  />
     <ModileContent isOpen={isOpen} onClose={onClose}/>
     <NomerSauna isOpen={isOpenNomer} onClose={onCloseNomer} />
     <CreateOtziv onOpenSuccess={onOpenSuccess} isOpen={createOtzivFunc} onClose={onCloseOtzivC}/>

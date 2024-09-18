@@ -12,7 +12,7 @@ function IconLike() {
   return <Image src="/assets/like-icon.svg" alt="like-icon" />;
 }
 
-const SwipperCardBottom = () => {
+const SwipperCardBottom = ({openOkno}:{openOkno: ()=> void}) => {
   return (
     <Card
       overflow="hidden"
@@ -61,7 +61,8 @@ const SwipperCardBottom = () => {
 
         <CardFooter py={0} className="pl-6 sm:pl-0 !px-0 sm:!px-5">
           <Link
-            to={"/#564654"}
+            to={"/#"}
+            onClick={openOkno}
             className="text-white font-OpenSans font-semibold text-[14px] sm:text-base pt-4"
           >
             Читать подробнее

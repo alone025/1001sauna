@@ -6,7 +6,10 @@ const cityData: { [key: string]: City } = {
     cityname: "Сауны Москвы",
     saunas: [
       {
-        img: [{ img: "/moskov_pic/glubina.png" }],
+        img: [
+          { img: "/moskov_pic/glubina.png" },
+          { img: "/moskov_pic/glubina.png" },
+        ],
         name: "Сауна Глубина",
         liked: 115,
         unLiked: 115,
@@ -124,6 +127,30 @@ const cityData: { [key: string]: City } = {
         opportunity: "бассейн 4х2,5 метра, DVD, спутниковое ТВ, аудио-видео аппаратура",
         price: "1600 - 2000 ₽/час",
         chegirma: "15",
+      },
+      {
+        img: [{ img: "/moskov_pic/mars.png" }],
+        name: "Вилла Марс",
+        liked: 115,
+        unLiked: 115,
+        parnaya: "Сауна, хамам, финская, русская",
+        address: "Мира, 112, корпус 1",
+        hajm: "6, до 30 чел.",
+        opportunity: "бассейн 4х2,5 метра, DVD, спутниковое ТВ, аудио-видео аппаратура",
+        price: "1600 - 2000 ₽/час",
+        chegirma: "18",
+      },
+      {
+        img: [{ img: "/moskov_pic/bountique.png" }, { img: "/moskov_pic/spa1.png" }],
+        name: "Boutique and Spa",
+        liked: 115,
+        unLiked: 115,
+        parnaya: "Сауна, хамам, финская, русская",
+        address: "Мира, 112, корпус 1",
+        hajm: "6, до 30 чел.",
+        opportunity: "бассейн 4х2,5 метра, DVD, спутниковое ТВ, аудио-видео аппаратура",
+        price: "1600 - 2000 ₽/час",
+        chegirma: "19",
       },
       // boshqa cardlarni shu yerga qoshas
     ],

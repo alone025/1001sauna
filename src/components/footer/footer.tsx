@@ -74,7 +74,7 @@ const Footer = (): JSX.Element => {
 									/>
 								</div>
 							</div>
-							<button className='flex mt-[32px] w-full md:w-auto md:mt-0 justify-center items-center h-[48px] flex-shrink-0 px-[24px] py-[8px] rounded-[12px] bg-[#FF7A01] text-white text-[16px] font-[600]'>
+							<button onClick={()=> window.open('/add-own-sauna', "_bref")} className='flex mt-[32px] w-full md:w-auto md:mt-0 justify-center items-center h-[48px] flex-shrink-0 px-[24px] py-[8px] rounded-[12px] bg-[#FF7A01] text-white text-[16px] font-[600]'>
 								Добавить заведение
 							</button>
 						</div>

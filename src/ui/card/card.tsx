@@ -1,7 +1,11 @@
 import { Button, ButtonGroup, Card, CardBody, CardFooter, Heading, IconButton, Image, Stack, Text } from '@chakra-ui/react'
-import  { useState } from 'react'
+import  { useEffect, useState } from 'react'
 import { Sauna } from '../../types/cardType'
 import { PhoneIcon } from '@chakra-ui/icons'
+import { Swiper, SwiperSlide } from 'swiper/react'
+import { Pagination } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/pagination';
 
 type Props = {
     data: Sauna
@@ -37,25 +41,47 @@ export default function CardUI({data, nmd, accepted}: Props) {
   const [opnL, setOpnL] = useState<boolean>(false)
 
 
+  useEffect(()=>{
+    const pathname = window.location.pathname
+    if(pathname == '/liked-card'){
+      setOpnL(true)
+    }
+  },[])
 
+
+  const pagination = {
+    clickable: true,
+  };
 
   return (
-    <Card maxW='270' className='!max-w-[167px] sm:!max-w-[200px] md:!max-w-[241px] xl:!max-w-[270px]' borderRadius='16'>
+    <Card maxW='270' className='!max-w-full xl:max-w-[270px]' borderRadius='16'>
     <CardBody padding={0} >
       <div className="img relative">
-      <Image
-        src={data.img[0].img}
-        alt='Green double couch with wooden legs'
-      borderRadius='16'
-        borderBottomRadius={0}
-      />
-        <div className="absolute left-3 md:left-4 top-3 md:top-4 flex flex-col gap-2">
+      <Swiper
+        pagination={pagination}
+        modules={[Pagination]}
+        className="mySwiper"
+      >
+       {data.img.map((im, mi)=>(
+          <SwiperSlide key={mi}> <Image
+          src={im.img}
+          alt='Green double couch with wooden legs'
+        borderRadius='16'
+        w={'100%'}
+          borderBottomRadius={0}
+        /></SwiperSlide>
+       ))}
+      
+       
+      </Swiper>
+    
+        <div className="absolute z-10 left-3 md:left-4 top-3 md:top-4 flex flex-col gap-2">
         {
-          accepted && (<p className='bg-[#00000080] text-center rounded-2xl font-OpenSans font-semibold text-[10px] sm:text-[11px] md:text-xs text-white px-[5px] py-1' >{nmd+1 > 9 ? nmd+1 : `0${nmd+1}`}</p>)
+          accepted && (<p className='bg-[#00000080] text-center rounded-2xl font-OpenSans font-semibold text-[10px] sm:text-xs text-white px-[5px] py-1' >{nmd+1 > 9 ? nmd+1 : `0${nmd+1}`}</p>)
         }
-        <p className='bg-[#F44747] rounded-2xl font-OpenSans font-semibold text-[10px] sm:text-[11px] md:text-xs text-white px-[5px] py-1' >{data.chegirma}-%</p>
+        <p className='bg-[#F44747] rounded-2xl font-OpenSans font-semibold text-[10px] sm:text-xs text-white px-[5px] py-1' >{data.chegirma}-%</p>
         </div>
-        <div className="likeee absolute right-3 top-3 block md:hidden">
+        <div className="likeee z-10 absolute right-3 top-3 block md:hidden">
         <IconButton aria-label='Search database' size="sm"  onClick={()=>setOpnL(!opnL)} icon={<UnLiked opn={opnL}/>}  variant='outline' style={{border: "none"}} />
         </div>
       </div>
@@ -96,7 +122,7 @@ export default function CardUI({data, nmd, accepted}: Props) {
     </CardBody>
     <CardFooter className='!px-3 sm:!px-[16px] md:!px-5' >
       <ButtonGroup spacing='2' width='100%' >
-        <Button variant='outline' width='100%' borderColor='#FF7A01' textColor='#FF7A01' className='hover:!bg-[#f7f3ed] hover:!text-[#FF7A01] !h-8 sm:!h-9 md:!h-12 bg-[#FF7A01] !rounded-xl sm:!rounded-[10px] md:!rounded-[6px] sm:bg-transparent !text-white sm:!text-[#FF7A01] !text-[14px] sm:!text-[15px] md:!text-[16px] line-clamp-1' >
+        <Button onClick={()=> window.open("/category/a/product/ask", '_current')} variant='outline' width='100%' borderColor='#FF7A01' textColor='#FF7A01' className='hover:!bg-[#f7f3ed] hover:!text-[#FF7A01] !h-8 sm:!h-9 md:!h-12 bg-[#FF7A01] !rounded-xl sm:bg-transparent !text-white sm:!text-[#FF7A01] !text-[14px] sm:!text-[15px] md:!text-[16px] line-clamp-1' >
         Подробнее
         </Button>
         <IconButton
@@ -105,7 +131,7 @@ export default function CardUI({data, nmd, accepted}: Props) {
         aria-label='Call Segun'
         size='md'
         borderColor='#FF7A01'
-        className='hover:!bg-[#f7f3ed] !rounded-xl md:!rounded-[6px] !w-8 !h-8 sm:!w-9 sm:!h-9 md:!w-12 md:!h-12 !min-w-[32px] md:!min-w-[40px]'
+        className='hover:!bg-[#f7f3ed] !rounded-xl  !h-8 !w-full !max-w-8 sm:!max-w-12 sm:!h-12 !min-w-[32px] md:!min-w-[40px]'
         icon={<PhoneIcon color='#FF7A01' />}
 />
       </ButtonGroup>

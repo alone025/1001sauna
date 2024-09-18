@@ -26,13 +26,13 @@ const TopBNINBT = ({
   const lotinHarf = transliterate("Москва");
   const selectedCity = cityData[lotinHarf].saunas.slice(0, 4);
 
-  const renderCards = () => {
+  const renderCards = (numbered: boolean) => {
     switch (verHor) {
       case false:
         return (
           <SimpleGrid className="!grid !gap-2 sm:!gap-5 lg:!gap-2 xl:!gap-6 grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-4"   spacing="24px">
             {selectedCity.map((nm, ind) => (
-              <CardUI accepted={true} data={nm} nmd={ind} key={ind} />
+              <CardUI  accepted={numbered} data={nm} nmd={ind} key={ind} />
             ))}
           </SimpleGrid>
         );
@@ -40,7 +40,7 @@ const TopBNINBT = ({
         return (
           <SimpleGrid columns={1} spacing="24px">
             {selectedCity.map((nm, ind) => (
-             <HorizontalCard data={nm} nmd={ind} accepted={true} />
+             <HorizontalCard data={nm} nmd={ind} accepted={numbered} />
             ))}
           </SimpleGrid>
         );
@@ -52,7 +52,7 @@ const TopBNINBT = ({
             className="!grid !gap-2 sm:!gap-5 lg:!gap-2 xl:!gap-6 grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-4"
           >
             {selectedCity.map((nm, ind) => (
-              <CardUI accepted={true} data={nm} nmd={ind} key={ind} />
+              <CardUI accepted={numbered} data={nm} nmd={ind} key={ind} />
             ))}
           </HStack>
         );
@@ -75,7 +75,7 @@ const TopBNINBT = ({
           <h3 className="text-2xl lg:text-[27px] font-OpenSans font-semibold text-[#3B4255] mb-6 sm:mb-8" >Популярные бани и сауны Москвы за неделю</h3>
           <div className="content-cards flex justify-center items-center">
 
-            {renderCards()}
+            {renderCards(false)}
           </div>
         </div>
       )}
@@ -85,7 +85,7 @@ const TopBNINBT = ({
           <h3 className="text-2xl lg:text-[27px] font-OpenSans font-semibold text-[#3B4255] mb-6 sm:mb-8" >Популярные бани и сауны Москвы за месяц</h3>
           <div className="content-cards flex justify-center items-center">
          
-            {renderCards()}
+            {renderCards(false)}
           </div>
         </div>
       )}
@@ -94,8 +94,8 @@ const TopBNINBT = ({
         <div className="lasthistory mt-8 sm:mt-12">
           <h3 className="text-2xl lg:text-[27px] font-OpenSans font-semibold text-[#3B4255] mb-6 sm:mb-8" >ТОП-10:  Бани и сауны Москвы</h3>
           <div className="content-cards flex justify-center items-center">
-      
-            {renderCards()}
+            
+            {renderCards(true)}
           </div>
         </div>
       )}
@@ -105,7 +105,7 @@ const TopBNINBT = ({
           <h3 className="text-2xl lg:text-[27px] font-OpenSans font-semibold text-[#3B4255] mb-6 sm:mb-8" >Вы смотрели ранее</h3>
           <div className="content-cards flex justify-center items-center">
       
-            {renderCards()}
+            {renderCards(false)}
           </div>
         </div>
       )}

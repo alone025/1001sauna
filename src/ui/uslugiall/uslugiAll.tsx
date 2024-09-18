@@ -19,7 +19,7 @@ const UslugiAll = ({isOpen, onClose}:{isOpen:boolean, onClose:()=>void}) => {
 </svg>
      </div>
                 <ModalBody>
-                    <div className="contente hidden lg:flex flex-wrap justify-between gap-x-10 gap-y-10">
+                    <div className="contente hidden lg:grid grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-x-10 gap-y-10">
                        {fullDataLinks.map((mk,km)=>(
                          <div key={km} className="list flex flex-col gap-3">
                          <h4 className="text-[21px] text-[#3B4255] font-OpenSans font-semibold">{mk.h4}</h4>

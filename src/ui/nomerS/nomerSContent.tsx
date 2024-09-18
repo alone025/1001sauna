@@ -22,6 +22,26 @@ const NomerSContent = () => {
             src:"/moskov_pic/mars.png",
             alt:"mars"
         },
+        {
+          id:5,
+          src:"/moskov_pic/kristall.png",
+          alt:"kristall"
+      },
+      {
+          id:5,
+          src:"/moskov_pic/mars.png",
+          alt:"mars"
+      },
+      {
+        id:6,
+        src:"/moskov_pic/kristall.png",
+        alt:"kristall"
+    },
+    {
+        id:7,
+        src:"/moskov_pic/mars.png",
+        alt:"mars"
+    },
     ]
 
     const uslugiShort = [
@@ -55,32 +75,26 @@ const NomerSContent = () => {
         <div className="bottome px-4 sm:px-0">
             <h3 className="text-xl lg:text-2xl text-[#3B4255] font-OpenSans font-semibold mt-6 mb-4">Хамам</h3>
             <h3 className="text-xl lg:text-2xl text-[#3B4255] font-OpenSans font-semibold" >1350 ₽/чаc</h3>
+
+
+
             <div className="contentss-mn">
-              {
-                uslugiShort.map((lk,lj)=>(
-                  <div key={lj} className="contente flex flex-row gap-3 sm:gap-4 mt-5 sm:mt-6" >
-          <p className="text-[14px] sm:text-base font-OpenSans font-normal text-[#4C4C4C]">
-          {lk.h2}
+      {uslugiShort.map((lk, lj) => (
+        <div key={lj} className="flex items-center mt-5 max-w-[800px]">
+          <p className="text-[14px] max-w-[104px] sm:max-w-max sm:text-base font-OpenSans font-normal text-[#4C4C4C]">
+            {lk.h2}
           </p>
-          <div className="flex flex-row gap-[6px] mt-4">
-            <div className="div-chiziq w-[3px] h-[1px] bg-[#CCCCCC]"></div>
-            <div className="div-chiziq hidden sm:block w-[5px] h-[1px] bg-[#CCCCCC]"></div>
-            <div className="div-chiziq hidden sm:block w-[6px] h-[1px] bg-[#CCCCCC]"></div>
-            <div className="div-chiziq hidden lg:block w-[6px] h-[1px] bg-[#CCCCCC]"></div>
-            <div className="div-chiziq hidden lg:block w-[6px] h-[1px] bg-[#CCCCCC]"></div>
-            <div className="div-chiziq hidden lg:block w-[6px] h-[1px] bg-[#CCCCCC]"></div>
-            <div className="div-chiziq hidden lg:block w-[6px] h-[1px] bg-[#CCCCCC]"></div>
-            <div className="div-chiziq hidden sm:block w-[6px] h-[1px] bg-[#CCCCCC]"></div>
-            <div className="div-chiziq w-[5px] h-[1px] bg-[#CCCCCC]"></div>
-            <div className="div-chiziq w-[3px] h-[1px] bg-[#CCCCCC]"></div>
-          </div>
-          <p className="text-[14px] sm:text-base font-OpenSans font-normal text-[#3B4255] max-w-[686px]">
+
+          <div className="flex-grow mx-3 h-[1px] border-t border-dashed border-[#CCCCCC]"></div>
+
+          <p className="text-[14px] sm:text-base w-[60%] font-OpenSans font-normal text-[#3B4255] max-w-[600px]">
             {lk.p}
           </p>
         </div>
-                ))
-              }
-            </div>
+      ))}
+    </div>
+
+    
             <div className="btns flex flex-col sm:flex-row gap-2 sm:gap-4 mt-6">
             <button className="bg-[#FF7A01] outline-none h-12 w-full sm:max-w-[298px] lg:max-w-none rounded-xl px-6 py-2 text-[14px] sm:text-base text-white font-OpenSans font-semibold">
             Позвонить

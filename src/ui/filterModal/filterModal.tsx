@@ -1,14 +1,8 @@
-import { useEffect, useState } from "react";
-import {
-  Input,
-  InputGroup,
-  InputRightElement,
-  InputLeftElement,
-} from "@chakra-ui/react";
+import { Input, InputGroup, InputLeftElement, InputRightElement, Modal, ModalBody, ModalContent, ModalOverlay } from "@chakra-ui/react"
 import CustomAccordion from "../accordion/accordion";
 import CheckboxUI from "../checkbox/checkbox";
+import { useEffect, useState } from "react";
 import { regions_districts } from "../../data/regionsMoskov";
-
 interface stations {
   id: string;
   name: string;
@@ -30,8 +24,17 @@ interface MetroData {
   lines: LInes[];
 }
 
-const Filter = ({ sticky }: { sticky: boolean }): JSX.Element => {
-  const [minPrice, setMinPrice] = useState(700);
+
+const FilterModal = ({
+    isOpen,
+    onClose,
+  }: {
+    isOpen: boolean;
+    onClose: () => void;
+  }) => {
+
+
+    const [minPrice, setMinPrice] = useState(700);
   const [maxPrice, setMaxPrice] = useState(30000);
 
   const [checkboxes, setCheckboxes] = useState(["all"]);
@@ -144,18 +147,44 @@ const Filter = ({ sticky }: { sticky: boolean }): JSX.Element => {
     }
   };
 
-  return (
-    <div
-      style={{ position: sticky ? "sticky" : "unset", top: "-18px" }}
-      className="font-OpenSans rounded-[16px] filter_comp p-[20px]"
-    >
-      <div className="">
-        <h4 className="text-[16px] text-[#3B4255] font-[600] pl-[15px] max-w-[155px] py-[20px]">
-          Подобрать сауну или баню
-        </h4>
 
-        <div style={{ overflowY: "auto", maxHeight: "calc(-15rem + 100vh)" }}>
-          <CustomAccordion
+  return (
+    <Modal size="xl" isOpen={isOpen} onClose={onClose}>
+    <ModalOverlay />
+    <ModalContent className="!px-4 !py-6 sm:!p-8 ">
+      <div className="lg-tex flex mb-3 flex-row justify-between gap-10">
+        <h3 className="text-xl lg:text-2xl text-[#3B4255] font-OpenSans font-semibold">
+        Подобрать сауну или баню
+        </h3>
+        <svg
+          onClick={onClose}
+          className="cursor-pointer hover:rotate-180 transition-transform duration-500"
+          xmlns="http://www.w3.org/2000/svg"
+          width="32"
+          height="32"
+          viewBox="0 0 32 32"
+          fill="none"
+        >
+          <path
+            d="M24 8L8 24"
+            stroke="#3B4255"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+          <path
+            d="M8 8L24 24"
+            stroke="#3B4255"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+        </svg>
+      </div>
+      <ModalBody p={0}>
+        <div className="content-body">
+        <div style={{overflowY:"auto", maxHeight:'calc(-15rem + 100vh)'}} >
+        <CustomAccordion
             section_title={"Стоимость"}
             description={
               <div className="flex flex-col gap-[8px]">
@@ -331,16 +360,21 @@ const Filter = ({ sticky }: { sticky: boolean }): JSX.Element => {
           <CustomAccordion section_title="Услуги" description="Услуги" />
         </div>
         <div className="flex flex-col items-center justify-center mt-[12px] gap-[12px] mb-[20px]">
-          <button className="bg-[#FF7A01] text-white px-[24px] py-[8px] w-[212px] xl:w-[232px] h-[48px] flex justify-center items-center rounded-[12px]">
-            Применить
-          </button>
-          <button className="bg-transparent text-[#3B4255] border border-[#CCC] px-[24px] py-[8px] w-[212px] xl:w-[232px] h-[48px] flex justify-center items-center rounded-[12px]">
-            Сбросить
-          </button>
-        </div>
-      </div>
-    </div>
-  );
-};
+            <button className="bg-[#FF7A01] text-white px-[24px] py-[8px] w-full lg:w-[212px] xl:w-[232px] h-[48px] flex justify-center items-center rounded-[12px]">
+              Применить
+            </button>
+            <button className="bg-transparent text-[#3B4255] border border-[#CCC] px-[24px] py-[8px] w-full lg:w-[212px] xl:w-[232px] h-[48px] flex justify-center items-center rounded-[12px]">
+              Сбросить
+            </button>
+          </div>
 
-export default Filter;
+
+        
+        </div>
+      </ModalBody>
+    </ModalContent>
+  </Modal>
+  )
+}
+
+export default FilterModal

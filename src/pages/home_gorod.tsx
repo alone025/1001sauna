@@ -9,9 +9,13 @@ import Discount from "../ui/discount/discount";
 import Links from "../ui/links/links";
 import { useEffect, useState } from "react";
 import HorizontalCard from "../ui/horizontalCard/horizontalCard";
-import YandexMap from "../ui/map/map";
+// import YandexMap from "../ui/map/map";
 import TopBNINBT from "../components/topBannerInBottom/topBNINBT";
 import Main_banner from "../ui/banner/main_banner";
+import Advertiment from "../components/advertiment/advertiment";
+import BoxAdvert from "../components/advertiment/boxAdvert";
+import FilterModal from "../ui/filterModal/filterModal";
+import YandexMap2 from "../ui/map/map2";
 
 type Props = {
   city: string;
@@ -148,6 +152,7 @@ const GridIcon = ({ isActive }: IconProps) => (
 function HomeGorod({ city }: Props) {
   const lotinHarf = transliterate(city);
   const selectedCity = cityData[lotinHarf];
+  const [showBlock, setShowBlock] = useState(true);
   
   const [icon, setIcon] = useState<string | null>(null);
 
@@ -162,6 +167,8 @@ function HomeGorod({ city }: Props) {
     localStorage.setItem("iconActive", item);
     setIcon(item);
   };
+
+ 
 
   useEffect(()=>{
     const handleResize = () => {
@@ -182,9 +189,72 @@ function HomeGorod({ city }: Props) {
     
   },[])
 
+  useEffect(() => {
+    handleResizeMK();
+
+    window.addEventListener('resize', handleResizeMK);
+
+    return () => {
+      window.removeEventListener('resize', handleResizeMK);
+    };
+  }, []);
+
+  const [sliceI,setsliceI]=useState(10)
+
+  const handleShow = ()=>{
+    setsliceI(12)
+    setShowBlock(false)
+  }
+
+  const [openFM, setOpenFM] = useState(false)
+
+  const onCLose = () => {
+    setOpenFM(false)
+  }
+  const onOpen = () => {
+    setOpenFM(true)
+  }
+  
+
+  const handleResizeMK = () => {
+   
+    
+    if (window.innerWidth < 768) {
+      setShowBlock(false);
+    } else {
+    
+        setShowBlock(true);
+   
+    }
+  };
+
+  const [selcted, setSelcted] = useState<number | null>(null)
+  const [selctedShow, setSelctedShow] = useState<boolean>(false)
+
+  
+const onMouseIn = (idC: number) => {
+  setSelcted(idC)
+   console.log('Ozgarishi kk', idC);
+   setSelctedShow(true)
+}
+const onMouseOut = () => {
+  setSelcted(null)
+  setSelctedShow(false)
+}
+
+
   if (!selectedCity) {
     return <p>Город не найден</p>;
   }
+
+  
+
+
+  
+  
+
+
+
 
 
   
@@ -192,33 +262,36 @@ function HomeGorod({ city }: Props) {
     switch (icon) {
       case "table":
         return (
-          <SimpleGrid columns={{ base: 2, md: 3, lg: 4 }} spacing="24px">
-            {selectedCity.saunas.map((nm, ind) => (
+          <SimpleGrid columns={{ base: 2, md: 3, lg: 4 }} spacing={{base: '12px', sm:'20px', lg:'20px'}}>
+            {selectedCity.saunas.slice(0,sliceI).map((nm, ind) => (
               <CardUI accepted={true} data={nm} nmd={ind} key={ind} />
             ))}
+            {showBlock &&  <BoxAdvert/>}
           </SimpleGrid>
         );
       case "grid":
         return (
           <SimpleGrid w='100%' columns={1} spacing="8px">
-            {selectedCity.saunas.map((nm, ind) => (
+            {selectedCity.saunas.slice(0,sliceI).map((nm, ind) => (
               <HorizontalCard data={nm} nmd={ind} accepted={true} />
             ))}
           </SimpleGrid>
         );
       case "map":
-        return (
+        return ( 
           <SimpleGrid w='100%' columns={2} spacing="20px" className="!hidden md:!grid">
           <div className="left-cont">
           <SimpleGrid columns={{ base: 1, lg: 2 }} spacing="20px" className="!gap-5 lg:!gap-2 xl:!gap-5">
-          {selectedCity.saunas.map((nm, ind) => (
-            <CardUI accepted={true} data={nm} nmd={ind} key={ind} />
+          {selectedCity.saunas.slice(0,sliceI).map((nm, ind) => (
+            <div onMouseEnter={()=> onMouseIn(ind+1)} onMouseLeave={onMouseOut} className="hover:bg-white transition-all hover:rounded-2xl hover:shadow-xl">
+              <CardUI accepted={true} data={nm} nmd={ind} key={ind} />
+            </div>
           ))}
         </SimpleGrid>
           </div>
           <div className="right-cont">
             <div className="sticky top-2">
-            <YandexMap/>
+            <YandexMap2 showId={selcted} showTrue={selctedShow} />
             </div>
           </div>
       </SimpleGrid>
@@ -229,16 +302,19 @@ function HomeGorod({ city }: Props) {
             spacing="24px"
             className="!grid !gap-2 sm:!gap-5 lg:!gap-2 xl:!gap-6 grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-4"
           >
-            {selectedCity.saunas.map((nm, ind) => (
+            {selectedCity.saunas.slice(0,sliceI).map((nm, ind) => (
               <CardUI accepted={true} data={nm} nmd={ind} key={ind} />
             ))}
+              {showBlock &&  <BoxAdvert/>}
           </HStack>
         );
     }
   };
 
   return (
-    <VStack spacing={12} align="stretch">
+   <>
+   
+   <VStack spacing={12} align="stretch">
       <div className="gorods-map">
         <div className="name-city mt-8 sm:mt-0">
           <h3 className="text-[30px] text-[#3B4255] font-OpenSans font-semibold mb-8">
@@ -246,14 +322,26 @@ function HomeGorod({ city }: Props) {
           </h3>
         </div>
         <div className="flex flex-col md:flex-row items-center gap-[30px]">
-          <div className="md:hidden lg:block w-full md:w-auto">
+       
+
+          <div className="flex flex-col items-start">
+          <div className="ak-fa flex flex-col md:flex-row gap-1 md:gap-8">
+          <div className="sm:hidden lg:flex items-center w-full md:w-auto">
             <Discount />
           </div>
-
-          <div className="flex flex-col items-start mb-[32px]">
             <Links />
-            <div className="flex lg:hidden justify-between items-center w-full mb-8">
-              <div className="text-[#3B4255] text-[14px] sm:text-[16px] font-[600] flex items-center gap-3">
+          </div>
+           
+          </div>
+        </div>
+        <div className="flex gap-[32px] justify-center">
+          <div className="max-w-[232px] xl:max-w-[272px] hidden lg:block">
+            <Filter sticky={false} />
+            <Advertiment/>
+          </div>
+          <div className="eminem flex justify-center flex-col items-center">
+          <div className="flex lg:hidden justify-between items-center w-full mb-8">
+              <div onClick={onOpen} className="text-[#3B4255] text-[14px] sm:text-[16px] font-[600] flex items-center gap-3">
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
   <path d="M22 3.5H2L10 12.96V19.5L14 21.5V12.96L22 3.5Z" stroke="#3B4255" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>
@@ -280,7 +368,7 @@ function HomeGorod({ city }: Props) {
               </div>
               </div>
             </div>
-            <div className="flex justify-between items-center w-full">
+            <div className="flex mb-8 justify-between items-center w-full">
               <div className="text-[#3B4255] text-[27px] font-[600]">
                 ТОП-10: Бани и сауны Москвы
               </div>
@@ -305,15 +393,10 @@ function HomeGorod({ city }: Props) {
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-        <div className="flex gap-[32px] justify-center">
-          <div className="max-w-[232px] xl:max-w-[272px] hidden lg:block">
-            <Filter sticky={true} />
-          </div>
-          <div className="eminem flex justify-center flex-col items-center">
+
             {renderCards()}
-            <Button className="mt-5 shadow-md w-full !bg-[#FFFFFF] text-[#3B4255] !rounded-xl">
+            
+            <Button onClick={handleShow} className="mt-5 shadow-md w-full !bg-[#FFFFFF] text-[#3B4255] !rounded-xl">
               Показать ещё
             </Button>
             <div className="mt-12">
@@ -333,6 +416,7 @@ function HomeGorod({ city }: Props) {
         </div>
       </div>
     </VStack>
+    <FilterModal isOpen={openFM} onClose={onCLose} /></>
   );
 }
 

@@ -19,7 +19,7 @@ function Main(): JSX.Element {
  const liok = pathName.pathname.includes('product')
 
   return (
-    <div  className={`main-content ${liok ? "mx-0":"mx-4"} sm:mx-[20px] 2xl:mx-0`}>
+    <div  className={`main-content ${liok ? "mx-0":"mx-3"} sm:mx-4 md:mx-5 2xl:mx-0`}>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/liked-card" element={<Liked />} />

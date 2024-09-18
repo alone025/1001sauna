@@ -15,6 +15,9 @@ const CustomSwiper: React.FC<{ items: React.ReactNode[]; autoPlay?: boolean; aut
   const [slideWidth, setSlideWidth] = useState<string>('100%'); 
   const [slidesToShow, setSlidesToShow] = useState<number>(1);
 
+
+
+
   useEffect(() => {
     const handleResize = () => {
       const screenWidth = window.innerWidth;
@@ -131,6 +134,8 @@ const CustomSwiper: React.FC<{ items: React.ReactNode[]; autoPlay?: boolean; aut
   const handleDotClick = (index: number) => {
     setCurrentIndex(index);
   };
+
+
   return (
     <Box
       className="relative w-full overflow-hidden"
@@ -199,6 +204,8 @@ const CustomSwiper: React.FC<{ items: React.ReactNode[]; autoPlay?: boolean; aut
       </Flex>
      </Wrapper>
     </Box>
+ 
+   
   );
 };
 

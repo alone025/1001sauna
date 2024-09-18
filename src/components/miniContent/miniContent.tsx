@@ -306,7 +306,7 @@ const MiniContent = ({openZabronit, pozvonitOpen}: {openZabronit: ()=>void, pozv
             </p>
           </label>
         </div>
-        <div className="opisaniya flex flex-col gap-3 mt-6">
+        <div id="contactss_ml" className="opisaniya flex flex-col gap-3 mt-6">
           <p className="text-sm sm:text-base text-[#4C4C4C] font-OpenSans font-normal">
             Район:{" "}
             <span className="font-semibold text-[#3B4255]">Кировский</span>
@@ -334,7 +334,7 @@ const MiniContent = ({openZabronit, pozvonitOpen}: {openZabronit: ()=>void, pozv
             </span>
           </p>
         </div>
-        <h3 className="text-xl lg:text-2xl font-OpenSans font-semibold text-[#3B4255] mt-4">
+        <h3 id="price_ml" className="text-xl lg:text-2xl font-OpenSans font-semibold text-[#3B4255] mt-4">
           1600 - 2000 ₽/час
         </h3>
         <div className="btns flex flex-col sm:flex-row lg:flex-col gap-2 mt-6">

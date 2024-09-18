@@ -1,5 +1,5 @@
 // src/components/YandexMap.tsx
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import {
   YMaps,
   Map,
@@ -22,16 +22,18 @@ interface Office {
     id: number;
     name: string;
     coordinates: [number, number]; 
+    adress: string
+    price: string
   }
 
   const offices: Office[] = [
-    { id: 1, name: "Office 1", coordinates: [55.751574, 37.573856] },
-    { id: 2, name: "Office 2", coordinates: [55.758, 37.62] },
-    { id: 3, name: "Office 3", coordinates: [55.764, 37.59] },
+    { id: 1, name: "Райская гавань", adress:'Мира, 112, корпус 1', price: "1600 - 2000" ,coordinates: [55.751574, 37.573856] },
+    { id: 2, name: "Райская гавань", adress:'Мира, 112, корпус 2', price: "1800 - 2200" , coordinates: [55.558, 37.62] },
+    { id: 3, name: "Райская гавань", adress:'Мира, 112, корпус 3',  price: "2000 - 2400" , coordinates: [55.664, 37.59] },
   ];
 
 
-const YandexMap: React.FC = () => {
+const YandexMap2 = ({showId, showTrue}: {showId: number | null, showTrue: boolean}) => {
   const mapRef = useRef<YMap | null>(null);
   const mapContainerRef = useRef<HTMLDivElement>(null);
   const toast = useToast();
@@ -50,6 +52,28 @@ const YandexMap: React.FC = () => {
     }
     return "";
   };
+
+  useEffect(()=>{
+    handleSelectByHover()
+  },[showTrue])
+
+  const [selectedCoor, setSelectedCoor] = useState([55.751574, 37.573856])
+
+const handleSelectByHover = () => {
+    if(showTrue){
+        const hoveredOffice = offices.filter((klmId)=> klmId.id === showId)
+        if(hoveredOffice.length !== 0){
+            console.log(hoveredOffice);
+            setSelectedOffice(hoveredOffice[0])
+            setHoveredOffice(hoveredOffice[0]?.id)
+            setSelectedCoor(hoveredOffice[0].coordinates)
+        }
+    }else{
+        setSelectedOffice(null)
+        setHoveredOffice(null)
+        setSelectedCoor([55.751574, 37.573856])
+    }
+}
 
   const handleShare = () => {
     const mapUrl = generateYandexMapUrl();
@@ -130,10 +154,12 @@ const YandexMap: React.FC = () => {
 
   const handleClick = (office: Office) => {
     setSelectedOffice(office);
+    setSelectedCoor(office.coordinates)
   };
 
   const closePopover = () => {
     setSelectedOffice(null);
+    setSelectedCoor([55.751574, 37.573856])
   };
 
   // const handleMouseMove = (event: React.MouseEvent) => {
@@ -189,21 +215,21 @@ const YandexMap: React.FC = () => {
                 <PopoverArrow />
                 <PopoverCloseButton />
                 <PopoverHeader >
-                    <h4 className="!text-[21px] !font-OpenSans !font-semibold !text-[#3B4255] line-clamp-2" >Райская гавань</h4>
+                    <h4 className="!text-[21px] !font-OpenSans !font-semibold !text-[#3B4255] line-clamp-2" >{selectedOffice.name}{!selectedOffice.name && "Райская гавань"}</h4>
                 </PopoverHeader>
                 <PopoverBody>
-                  <h4 className="text-base text-[#4C4C4C] font-OpenSans font-normal line-clamp-1" >Адрес: <span className="font-semibold hover:underline hover:cursor-pointer text-[#3B4255]" >Мира, 112, корпус 1</span></h4>
-                  <h4 className="!text-[21px] my-2 !font-OpenSans !font-semibold !text-[#3B4255]" >1600 - 2000 ₽/час</h4>
+                  <h4 className="text-base text-[#4C4C4C] font-OpenSans font-normal line-clamp-1" >Адрес: <span className="font-semibold hover:underline hover:cursor-pointer text-[#3B4255]" >{selectedOffice.adress}{!selectedOffice.adress && 'Мира, 112, корпус 1'}</span></h4>
+                  <h4 className="!text-[21px] my-2 !font-OpenSans !font-semibold !text-[#3B4255]" >{selectedOffice.price} {!selectedOffice && '1600 - 2000'} ₽/час</h4>
                   <button className="text-[#FF7A01] border-[#FF7A01] border rounded-xl w-full max-w-[142px] h-8 text-[14px] font-OpenSans font-semibold" >Подробнее</button>
                 </PopoverBody>
               </PopoverContent>
             </Popover>
           )}
           <Map
-            defaultState={{ center: [55.751574, 37.573856], zoom: 10 }}
+            defaultState={{ center: selectedCoor, zoom: 10 }}
             width="100%"
             id="mapContainer"
-            height="450px"
+            height="calc(-1.125rem + 100vh)"
             instanceRef={(ref) => {
               mapRef.current = ref;
             }}
@@ -358,4 +384,4 @@ const YandexMap: React.FC = () => {
   );
 };
 
-export default YandexMap;
+export default YandexMap2;

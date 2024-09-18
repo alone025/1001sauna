@@ -9,13 +9,25 @@ import SwipperCardBottom from "./ui/swipperCard/swipperCard";
 import TextFooter from "./components/textFooter/textFooter";
 import Breadcromb from "./ui/breadcrumb/breadcromb";
 import { useLocation } from "react-router-dom";
+import { useState } from "react";
+import ZavadeniyaOtzivModal from "./ui/zavadeniyaOtziv/zavadeniyaOtziv";
 
 function App(): JSX.Element {
+  const [openModal , setOpenModal] = useState(false)
+
+  const onClose = () => {
+    setOpenModal(false)
+  }
+
+  const onOpen = () => {
+    setOpenModal(true)
+  }
+
   const slides = [
-    <SwipperCardBottom />,
-    <SwipperCardBottom />,
-    <SwipperCardBottom />,
-    <SwipperCardBottom />,
+    <SwipperCardBottom openOkno={onOpen} />,
+    <SwipperCardBottom openOkno={onOpen} />,
+    <SwipperCardBottom openOkno={onOpen} />,
+    <SwipperCardBottom openOkno={onOpen} />,
   ];
 
   // const path = window.location.pathname;
@@ -86,7 +98,7 @@ function App(): JSX.Element {
             <CustomSwiper
               items={slides}
               autoPlay={true}
-              autoPlayInterval={40000000}
+              autoPlayInterval={4000}
             />
           </div>
           <Wrapper>
@@ -100,6 +112,7 @@ function App(): JSX.Element {
         </>
       )}
       <Footer />
+      <ZavadeniyaOtzivModal isOpen={openModal} onClose={onClose} />
     </>
   );
 }

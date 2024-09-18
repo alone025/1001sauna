@@ -104,7 +104,7 @@ import {
                 <p className="text-base text-[#3B4255] font-OpenSans font-normal">
                   Оставляя информацию на сайте 4bani, я подтверждаю, что согласен
                   (согласна) на обработку персональных данных в соответствии с{" "}
-                  <span className="text-[#FF7A01] underline cursor-pointer">
+                  <span onClick={()=> window.open('/private-policy', '_bref')} className="text-[#FF7A01] underline cursor-pointer">
                     пользовательским соглашением.
                   </span>
                 </p>

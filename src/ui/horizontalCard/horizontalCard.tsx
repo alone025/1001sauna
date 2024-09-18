@@ -9,6 +9,10 @@ import {
   Image,
 } from "@chakra-ui/react";
 import { useState } from "react";
+import { Swiper, SwiperSlide } from 'swiper/react'
+import { Pagination } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/pagination';
 
 type Props = {
   accepted: boolean;
@@ -68,6 +72,9 @@ function UnLiked({ opn }: { opn: boolean }) {
 
 function HorizontalCard({ accepted, nmd, data }: Props) {
   const [opnL, setOpnL] = useState(false);
+  const pagination = {
+    clickable: true,
+  };
 
   return (
     <Card
@@ -80,15 +87,29 @@ function HorizontalCard({ accepted, nmd, data }: Props) {
       className="justify-between !flex-col sm:!flex-row gap-3 sm:!gap-5"
     >
       <div className="img relative w-full sm:w-auto sm:py-5 sm:pl-5">
-        <Image
+      <Swiper
+        pagination={pagination}
+        modules={[Pagination]}
+        className="mySwiper max-w-full sm:max-w-[180px] lg:max-w-[260px]"
+        slidesPerView={1}
+        
+      >
+       {data.img.map((im, mi)=>(
+          <SwiperSlide className="max-w-full sm:max-w-[180px] lg:max-w-[260px]" key={mi}> <Image
           maxW={{  base:"100%", sm:'180px', lg: "260px" }}
           w='100%'
           objectFit="cover"
-          src={data.img[0].img}
+          src={im.img}
           alt="Green double couch with wooden legs"
           className="!max-w-full sm:!max-w-[180px] lg:!max-w-[260px] sm:rounded-xl"
         />
-        <div className="absolute left-4 sm:left-8 top-4 sm:top-8 flex flex-col gap-2">
+        </SwiperSlide>
+       ))}
+      
+       
+      </Swiper>
+        
+        <div className="absolute left-4 z-10 sm:left-8 top-4 sm:top-8 flex flex-col gap-2">
           {accepted && (
             <p className="bg-[#00000080] text-center rounded-2xl font-OpenSans font-semibold text-[10px] sm:text-[11px] md:text-xs text-white px-[5px] py-1">
               {nmd + 1 > 9 ? nmd + 1 : `0${nmd + 1}`}

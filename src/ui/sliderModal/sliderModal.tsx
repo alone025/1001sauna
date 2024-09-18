@@ -35,18 +35,46 @@ const SliderModal: React.FC = () => {
   // Handle responsive behavior
   useEffect(() => {
     const updateThumbnailsToShow = () => {
-      if(window.innerWidth <= 450){
-        setThumbnailsToShow(2);
+      if(window.innerWidth <= 310){
+        setThumbnailsToShow(3.3);
       }
-     else if (window.innerWidth <= 640) {
-        setThumbnailsToShow(3); // For mobile devices
-      } else if (window.innerWidth <= 1024) {
-        setThumbnailsToShow(4); // For tablet devices
+      else if(window.innerWidth <= 330){
+        setThumbnailsToShow(3.5);
+      }
+      else if (window.innerWidth <= 380) {
+        setThumbnailsToShow(3.9); //  mobile 
+      }
+      else if (window.innerWidth <= 403) {
+        setThumbnailsToShow(4.2); //  mobile 
+      }
+      else if (window.innerWidth <= 454) {
+        setThumbnailsToShow(4.3); //  mobile 
+      }
+      else if (window.innerWidth <= 499) {
+        setThumbnailsToShow(4.8); //  mobile 
+      }
+      else if (window.innerWidth <= 537) {
+        setThumbnailsToShow(5.5); //  mobile 
+      }
+      else if (window.innerWidth <= 745) {
+        setThumbnailsToShow(5.8); //  mobile 
+      }
+     else if (window.innerWidth <= 836) {
+        setThumbnailsToShow(5.5); //  mobile 
+      } else if (window.innerWidth <= 930) {
+        setThumbnailsToShow(6.5); //  tablet 
       }
       
-      else {
-        setThumbnailsToShow(8); // For larger screens
+      else if (window.innerWidth <= 1045) {
+        setThumbnailsToShow(7.5); //  larger 
+      }  else if (window.innerWidth <= 1130) {
+        setThumbnailsToShow(8.5); //  larger 
+      } else if (window.innerWidth <= 1300) {
+        setThumbnailsToShow(9.5); //  larger 
+      }else{
+        setThumbnailsToShow(10.5);
       }
+    
     };
 
     updateThumbnailsToShow();
@@ -78,7 +106,7 @@ const SliderModal: React.FC = () => {
     );
   };
 
-  // Touch and mouse handlers
+
   const handleStart = (clientX: number) => {
     touchStartX.current = clientX;
     isDragging.current = true;
@@ -95,10 +123,8 @@ const SliderModal: React.FC = () => {
     const diff = touchStartX.current - touchEndX.current;
 
     if (diff > 50) {
-      // Swipe left
       showNextThumbnails();
     } else if (diff < -50) {
-      // Swipe right
       showPrevThumbnails();
     }
 
@@ -201,8 +227,8 @@ const SliderModal: React.FC = () => {
                   onClick={() => setCurrentIndex(thumbnailStartIndex + index)}
                   className={`overflow-hidden transition-all ${
                     currentIndex === thumbnailStartIndex + index
-                      ? 'border-[4px] w-[104px] h-[104px] rounded-2xl border-[#FF7A01]'
-                      : 'border-[0px] w-[104px] h-[104px] border-transparent rounded-2xl'
+                      ? 'border-[4px] w-20 sm:w-[104px] h-20 sm:h-[104px] rounded-2xl border-[#FF7A01]'
+                      : 'border-[0px] w-20 sm:w-[104px] h-20 sm:h-[104px] border-transparent rounded-2xl'
                   }`}
                 >
                   <img

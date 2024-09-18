@@ -19,9 +19,9 @@ const Pazvoniy = ({
   onMap: ()=>void
 }) => {
   return (
-    <Modal size="xl" isOpen={isOpen} onClose={onClose}>
+    <Modal isOpen={isOpen} onClose={onClose}>
       <ModalOverlay />
-      <ModalContent className="">
+      <ModalContent className="!max-w-[700px] lg:!max-w-[860px]" margin={{base:'0', sm:"auto"}}>
         <div className="lg-tex flex flex-row !px-4 !py-6 sm:!p-8 sm:!pb-0 justify-end sm:justify-between gap-10">
           <h3 className="text-xl hidden sm:block lg:text-2xl text-[#3B4255] font-OpenSans font-semibold">
             Воронцовские бани
@@ -91,7 +91,7 @@ const Pazvoniy = ({
               г. Москва Воронцовский пер, 5/7 ст1
             </p>
 
-            <p onClick={onMap} className="text-sm sm:text-base text-[#FF7A01] font-semibold font-OpenSans flex flex-row gap-4 mt-8">
+            <p onClick={onMap} className="text-sm sm:text-base cursor-pointer text-[#FF7A01] font-semibold font-OpenSans flex flex-row gap-4 mt-8">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"
@@ -136,26 +136,32 @@ const Pazvoniy = ({
                 onClick={onOpenSuccess}
                 className="text-sm sm:text-base font-OpenSans font-semibold text-[#F44747] px-16 py-[10px] rounded-xl bg-[#FFF] border-[#F44747] border sm:mt-6"
               >
-                В Пожаловаться
+                Пожаловаться
               </button>
             </div>
           </div>
         </ModalBody>
         <ModalFooter p={0}>
-        <div className="textse text-sm font-OpenSans mt-10 flex flex-col sm:flex-row gap-5 rounded-b-lg px-8 py-6 font-normal text-white bg-[#FF7A01]">
-        <p>
+        <div className="textse text-sm font-OpenSans mt-10 flex flex-col sm:grid sm:grid-cols-3 gap-5 rounded-b-lg px-8 py-6 font-normal text-white bg-[#FF7A01]">
+         <div className="f-1 flex flex-col sm:flex-row gap-5">
+         <p>
             При заказе 4-х часов, 2 часа в подарок! (Действует с понеделньника
             по пятницу с 09.00 до 17.00 и с 24.00 до 06.00)
           </p>
           <Divider orientation='vertical' h='auto' className="hidden sm:flex"  />
+         </div>
+          <div className="f-2 flex flex-col sm:flex-row gap-5">
           <Divider  h='auto' className="flex sm:hidden"  />
           <p>
             В воскресенье с 17.00 до 09.00 утра понедельника, скидка -50% на все
             номера!{" "}
           </p>
+          </div>
+          <div className="f-3 flex flex-col sm:flex-row gap-5">
           <Divider orientation='vertical' h='auto' className="hidden sm:flex"  />
           <Divider  h='auto' className="flex sm:hidden"  />
           <p>Именинникам скидка -10% (действует 7 дней до и 7 дней после)</p>
+          </div>
         </div>
         </ModalFooter>
       </ModalContent>

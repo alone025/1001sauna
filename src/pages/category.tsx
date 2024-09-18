@@ -18,8 +18,11 @@ import { ChevronDownIcon, ChevronUpIcon } from "@chakra-ui/icons";
 import Links from "../ui/links/links";
 import Discount from "../ui/discount/discount";
 import HorizontalCard from "../ui/horizontalCard/horizontalCard";
-import YandexMap from "../ui/map/map";
+// import YandexMap from "../ui/map/map";
 import Advertiment from "../components/advertiment/advertiment";
+import FilterModal from "../ui/filterModal/filterModal";
+import YandexMap2 from "../ui/map/map2";
+import BoxAdvert from "../components/advertiment/boxAdvert";
 
 type IconProps = {
   isActive: boolean;
@@ -155,6 +158,7 @@ const Category = () => {
   const selectedCity = cityData[lotinHarf];
   const [sort, setSort] = useState("popularity");
   const [sortMName, setSortMName] = useState("По популярности");
+  const [showBlock, setShowBlock] = useState(true);
 
   const sorts = [
     {
@@ -181,7 +185,6 @@ const Category = () => {
       const wiidht = window.innerWidth
       console.log(wiidht);
       if(768 > wiidht){
-        // setIcon("table")
         handleActiveIcon('table')
       }
     };
@@ -196,14 +199,63 @@ const Category = () => {
     
   },[])
 
+
+  useEffect(() => {
+    handleResizeMK();
+
+    window.addEventListener('resize', handleResizeMK);
+
+    return () => {
+      window.removeEventListener('resize', handleResizeMK);
+    };
+  }, []);
+
+
+  const [selcted, setSelcted] = useState<number | null>(null)
+  const [selctedShow, setSelctedShow] = useState<boolean>(false)
+  const [sliceI,setsliceI]=useState(10)
+
+  
+const onMouseIn = (idC: number) => {
+  setSelcted(idC)
+   console.log('Ozgarishi kk', idC);
+   setSelctedShow(true)
+}
+const onMouseOut = () => {
+  setSelcted(null)
+  setSelctedShow(false)
+}
+
+const handleShow = ()=>{
+  setsliceI(12)
+  setShowBlock(false)
+}
+
+const handleResizeMK = () => {
+   
+    
+  if (window.innerWidth < 768) {
+    setShowBlock(false);
+  } else {
+  
+     if(sliceI <= 10){
+      setShowBlock(true);
+     }else{
+      setShowBlock(false);
+     }
+ 
+  }
+};
+
   const renderCards = () => {
     switch (icon) {
       case "table":
         return (
-          <SimpleGrid columns={{ base: 2, md: 3, lg: 4 }} spacing="24px">
-            {selectedCity.saunas.map((nm, ind) => (
+          <SimpleGrid columns={{ base: 2, md: 3, lg: 4 }} spacing="20px">
+            {selectedCity.saunas.slice(0,sliceI).map((nm, ind) => (
               <CardUI accepted={true} data={nm} nmd={ind} key={ind} />
             ))}
+             {showBlock &&  <BoxAdvert/>}
           </SimpleGrid>
         );
       case "grid":
@@ -220,13 +272,15 @@ const Category = () => {
             <div className="left-cont">
             <SimpleGrid columns={{ base: 1, lg: 2 }} spacing="20px" className="!gap-5 lg:!gap-2 xl:!gap-5">
             {selectedCity.saunas.map((nm, ind) => (
+               <div onMouseEnter={()=> onMouseIn(ind+1)} onMouseLeave={onMouseOut} className="hover:bg-white transition-all hover:rounded-2xl hover:shadow-xl">
               <CardUI accepted={true} data={nm} nmd={ind} key={ind} />
+              </div>
             ))}
           </SimpleGrid>
             </div>
             <div className="right-cont">
               <div className="sticky top-2">
-              <YandexMap/>
+              <YandexMap2 showId={selcted} showTrue={selctedShow} />
               </div>
             </div>
         </SimpleGrid>
@@ -258,17 +312,24 @@ const Category = () => {
     setIcon(item);
   };
 
+  const [openFM, setOpenFM] = useState(false)
 
-
+const onCLose = () => {
+  setOpenFM(false)
+}
+const onOpen = () => {
+  setOpenFM(true)
+}
 
   return (
+  <>
     <div className="category mt-8">
       <h2 className="text-[30px] font-OpenSans font-semibold text-[#3B4255]">
         {selectedCity.cityname}
       </h2>
       <div className="content-mm mt-1 sm:mt-8">
       <div className="hidden sm:flex lg:hidden justify-between items-center w-full mb-3">
-              <div className="text-[#3B4255] text-[14px] sm:text-[16px] font-[600] flex items-center gap-3">
+              <div  onClick={onOpen} className="text-[#3B4255] text-[14px] sm:text-[16px] font-[600] flex items-center gap-3">
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
   <path d="M22 3.5H2L10 12.96V19.5L14 21.5V12.96L22 3.5Z" stroke="#3B4255" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>
@@ -305,7 +366,8 @@ const Category = () => {
             <Links />
 
             <div className="flex justify-between items-center w-full">
-            <div className="text-[#3B4255] text-[14px] sm:text-[16px] font-[600] flex items-center gap-3">
+            <div onClick={()=>onOpen
+            } className="text-[#3B4255] text-[14px] sm:text-[16px] font-[600] flex items-center gap-3">
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
   <path d="M22 3.5H2L10 12.96V19.5L14 21.5V12.96L22 3.5Z" stroke="#3B4255" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>
@@ -428,7 +490,7 @@ const Category = () => {
               ))}
             </HStack> */}
             {renderCards()}
-            <Button className="mt-5 shadow-md w-full !bg-[#FFFFFF] text-[#3B4255] !rounded-xl">
+            <Button onClick={handleShow} className="mt-5 shadow-md w-full !bg-[#FFFFFF] text-[#3B4255] !rounded-xl">
               Показать ещё
             </Button>
             <div className="mt-12">
@@ -448,7 +510,10 @@ const Category = () => {
         </div>
        </div>
       </div>
+     
     </div>
+     <FilterModal isOpen={openFM} onClose={onCLose}/>
+  </>
   );
 };
 

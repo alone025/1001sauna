@@ -31,7 +31,7 @@ const Home_bez_gorod = () => {
                 {c.cityname}
               </h3>
             </div>
-            <HStack spacing="20px" wrap="wrap" justifyContent='center'>
+            <HStack className="!grid !gap-2 sm:!gap-5 lg:!gap-2 xl:!gap-6 grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-4" wrap="wrap" justifyContent='center'>
               {c.saunas.map((nm, ind) => (
                 <CardUI accepted={true} nmd={ind} data={nm} key={ind} />
               ))}

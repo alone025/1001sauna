@@ -29,24 +29,15 @@ const UslugiProduct = () => {
           Перечень услуг
         </h3>
       </div>
+   
       {uslugData.map((ms, sm) => (
         <div className="contente flex flex-col sm:flex-row gap-1 sm:gap-4 mt-5 sm:mt-6" key={sm}>
-          <p className="text-[14px] sm:text-base font-OpenSans font-semibold sm:font-normal text-[#4C4C4C]">
+             <p className="text-[14px] max-w-[104px] sm:max-w-max sm:text-base font-OpenSans font-semibold sm:font-normal text-[#4C4C4C]">
             {ms.h2}
           </p>
-          <div className="hidden sm:flex flex-row gap-[6px] mt-4">
-            <div className="div-chiziq w-[3px] h-[1px] bg-[#CCCCCC]"></div>
-            <div className="div-chiziq w-[5px] h-[1px] bg-[#CCCCCC]"></div>
-            <div className="div-chiziq w-[6px] h-[1px] bg-[#CCCCCC]"></div>
-            <div className="div-chiziq hidden lg:block w-[6px] h-[1px] bg-[#CCCCCC]"></div>
-            <div className="div-chiziq hidden lg:block w-[6px] h-[1px] bg-[#CCCCCC]"></div>
-            <div className="div-chiziq hidden lg:block w-[6px] h-[1px] bg-[#CCCCCC]"></div>
-            <div className="div-chiziq hidden lg:block w-[6px] h-[1px] bg-[#CCCCCC]"></div>
-            <div className="div-chiziq w-[6px] h-[1px] bg-[#CCCCCC]"></div>
-            <div className="div-chiziq w-[5px] h-[1px] bg-[#CCCCCC]"></div>
-            <div className="div-chiziq w-[3px] h-[1px] bg-[#CCCCCC]"></div>
-          </div>
-          <p className="text-[14px] sm:text-base font-OpenSans font-normal text-[#3B4255] max-w-[686px]">
+
+          <div className="hidden sm:flex sm:flex-grow mx-3 sm:mt-4 h-[1px] border-t border-dashed border-[#CCCCCC]"></div>
+          <p className="text-[14px] sm:text-base sm:w-[60%] font-OpenSans font-normal text-[#3B4255] sm:max-w-[600px]">
             {ms.p}
           </p>
         </div>

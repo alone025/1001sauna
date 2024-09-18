@@ -39,8 +39,8 @@ const LoginModal: React.FC<LoginModalProps> = ({ closeModal }): JSX.Element => {
 							className='w-full border outline-none border-[#CCCCCC] py-[9px] px-[12px] rounded-[4px] text-[14px] md:text-[16px]'
 						/>
 					</div>
-					<div className='mt-[24px] flex justify-between items-center'>
-						<div className='flex items-center gap-[16px]'>
+					<div className='mt-[24px] gap-5 sm:gap-0 flex justify-between items-center'>
+						<div className='flex items-center gap-2 sm:gap-[16px]'>
 							<input type='checkbox' />
 							<h4 className='text-[#3B4255] text-[14px] md:text-[16px]'>
 								Запомнить меня
@@ -131,7 +131,7 @@ const LoginModal: React.FC<LoginModalProps> = ({ closeModal }): JSX.Element => {
 							onClick={closeModal}
 						/>
 					</div>
-					<div className='flex flex-col w-full gap-[20px]'>
+					<div className='flex flex-col w-full'>
 					
 						<input
 							type='email'
@@ -140,9 +140,7 @@ const LoginModal: React.FC<LoginModalProps> = ({ closeModal }): JSX.Element => {
 						/>
 					
 					</div>
-					<div className='mt-[24px] flex justify-between items-center'>
 					
-					</div>
 					<button className='bg-[#FF7A01] rounded-[12px] py-[8px] px-[64px] w-full text-white flex justify-center items-center mt-[24px] h-[48px]'>
 					Сбросить пароль
 					</button>

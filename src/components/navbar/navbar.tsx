@@ -63,8 +63,8 @@ const Navbar: React.FC = (): JSX.Element => {
       <Banner />
       <div className="nav bg-[#fff]">
         <Wrapper>
-          <div className="font-OpenSans flex items-center gap-[20px] justify-between py-[15px] mx-[20px] 2xl:mx-0">
-            <div className="flex justify-between md:w-full items-center gap-[20px]">
+          <div className="font-OpenSans flex items-center justify-between py-[15px] mx-[20px] 2xl:mx-0">
+            <div className="flex justify-between md:w-full items-center gap-5 lg:gap-[30px]">
               <div className="flex items-center gap-[40px]">
                 <img
                   src="/assets/logo.png"
@@ -139,7 +139,7 @@ const Navbar: React.FC = (): JSX.Element => {
                   <img src="/assets/like.png" alt="like icon" />
                   <h4>Избранное</h4>
                 </Link>
-                <div className="flex items-center gap-[20px]">
+                <div className="flex items-center gap-5 lg:gap-[0px]">
                   <img
                     src="/assets/search.png"
                     alt="404"

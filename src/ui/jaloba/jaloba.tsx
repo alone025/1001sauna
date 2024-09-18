@@ -23,7 +23,7 @@ import {
     return (
       <Modal size="xl" isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
-        <ModalContent className="!px-4 !py-6 sm:!p-8 ">
+        <ModalContent className="!px-4 !py-6 sm:!p-8 !max-w-[700px] lg:!max-w-[860px]" margin={{base:'0', sm:"auto"}}>
           <div className="lg-tex flex mb-3 flex-row justify-between gap-10">
             <h3 className="text-xl lg:text-2xl text-[#3B4255] font-OpenSans font-semibold">
             Оставить жалобу
@@ -136,7 +136,7 @@ import {
                 <p className="text-base text-[#3B4255] font-OpenSans font-normal">
                   Оставляя информацию на сайте 4bani, я подтверждаю, что согласен
                   (согласна) на обработку персональных данных в соответствии с{" "}
-                  <span className="text-[#FF7A01] underline cursor-pointer">
+                  <span onClick={()=> window.open('/private-policy', '_bref')} className="text-[#FF7A01] underline cursor-pointer">
                     пользовательским соглашением.
                   </span>
                 </p>

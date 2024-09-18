@@ -19,7 +19,11 @@ const [descV, setDescV] = useState('')
 
 const [showMd, setShowMD]= useState(true)
 
+const [select1, setSelect1] = useState('Выбрать номер')
 
+const handleSelect1 = (e:string)=>{
+  setSelect1(e)
+}
   return (
     <div className="content-createOtziv">
       <div className="text-np">
@@ -89,7 +93,7 @@ const [showMd, setShowMD]= useState(true)
           <Menu>
             <MenuButton w="100%">
               <div className="choose flex flex-row justify-between items-center w-full px-3 py-[10px] border rounded border-[#CCCCCC]">
-                <p>Выбрать номер</p>
+                <p>{select1}</p>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="24"
@@ -108,94 +112,33 @@ const [showMd, setShowMD]= useState(true)
               </div>
             </MenuButton>
             <MenuList>
-              <MenuItem>
-                <div className="lj flex flex-row items-center w-full justify-between gap-1">
-                  <p className="text-sm font-OpenSans font-normal text-[#3B4255]">
-                    1 Variant
-                  </p>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="20"
-                    height="20"
-                    viewBox="0 0 20 20"
-                    fill="none"
-                  >
-                    <path
-                      d="M16.6666 5L7.49998 14.1667L3.33331 10"
-                      stroke="#FF7A01"
-                      stroke-width="2"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    />
-                  </svg>
-                </div>
-              </MenuItem>
-              <MenuItem>
-                <div className="lj flex flex-row items-center w-full justify-between gap-1">
-                  <p className="text-sm font-OpenSans font-normal text-[#3B4255]">
-                    1 Variant
-                  </p>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="20"
-                    height="20"
-                    viewBox="0 0 20 20"
-                    fill="none"
-                  >
-                    <path
-                      d="M16.6666 5L7.49998 14.1667L3.33331 10"
-                      stroke="#FF7A01"
-                      stroke-width="2"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    />
-                  </svg>
-                </div>
-              </MenuItem>
-              <MenuItem>
-                <div className="lj flex flex-row items-center w-full justify-between gap-1">
-                  <p className="text-sm font-OpenSans font-normal text-[#3B4255]">
-                    1 Variant
-                  </p>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="20"
-                    height="20"
-                    viewBox="0 0 20 20"
-                    fill="none"
-                  >
-                    <path
-                      d="M16.6666 5L7.49998 14.1667L3.33331 10"
-                      stroke="#FF7A01"
-                      stroke-width="2"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    />
-                  </svg>
-                </div>
-              </MenuItem>
-              <MenuItem>
-                <div className="lj flex flex-row items-center w-full justify-between gap-1">
-                  <p className="text-sm font-OpenSans font-normal text-[#3B4255]">
-                    1 Variant
-                  </p>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="20"
-                    height="20"
-                    viewBox="0 0 20 20"
-                    fill="none"
-                  >
-                    <path
-                      d="M16.6666 5L7.49998 14.1667L3.33331 10"
-                      stroke="#FF7A01"
-                      stroke-width="2"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    />
-                  </svg>
-                </div>
-              </MenuItem>
+            {['1','2','3','4'].map((cnum, knum)=>(
+                 <MenuItem key={knum} onClick={()=>handleSelect1(cnum)} >
+                 <div className="lj flex flex-row items-center w-full justify-between gap-1">
+                   <p className="text-sm font-OpenSans font-normal text-[#3B4255]">
+                     {cnum} Variant
+                   </p>
+                    {
+                      cnum === select1 &&  <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="20"
+                      height="20"
+                      viewBox="0 0 20 20"
+                      fill="none"
+                    >
+                      <path
+                        d="M16.6666 5L7.49998 14.1667L3.33331 10"
+                        stroke="#FF7A01"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                    </svg>
+                    }
+                 </div>
+               </MenuItem>
+              ))}
+
             </MenuList>
           </Menu>
         </div>
@@ -221,8 +164,8 @@ const [showMd, setShowMD]= useState(true)
       </div>
       <div className="soglashaniya flex flex-row gap-4 items-start mt-6">
         <Checkbox colorScheme="orange" className="mt-1"/>
-        <p className="text-base text-[#3B4255] font-OpenSans font-normal">Оставляя информацию на сайте 4bani, я подтверждаю, что согласен (согласна) на обработку персональных данных в соответствии
-        с <span className="text-[#FF7A01] underline cursor-pointer" >пользовательским соглашением.</span></p>
+        <p  className="text-base text-[#3B4255] font-OpenSans font-normal">Оставляя информацию на сайте 4bani, я подтверждаю, что согласен (согласна) на обработку персональных данных в соответствии
+        с <span onClick={()=> window.open('/private-policy', '_bref')} className="text-[#FF7A01] underline cursor-pointer" >пользовательским соглашением.</span></p>
       </div>
       <button onClick={onOpenSuccess} className="text-sm sm:text-base font-OpenSans font-semibold text-[#FFFFFF] px-16 py-[10px] rounded-xl bg-[#FF7A01] mt-6">Отправить</button>
     </div>

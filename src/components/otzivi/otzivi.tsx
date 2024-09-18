@@ -47,7 +47,7 @@ const Otzivi = ({onOpenOtzivC}: {onOpenOtzivC: ()=>void}) => {
 
   const handleToggle = (id: number) => {
     if (commentOpen === id) {
-        setOpenComment(null); // Close if it's already open
+        setOpenComment(null); 
     } else {
         setOpenComment(id);
     }
@@ -81,6 +81,7 @@ const Otzivi = ({onOpenOtzivC}: {onOpenOtzivC: ()=>void}) => {
                   <div className="otvetit flex flex-row justify-between items-center">
                     <Button
                       variant="ghost"
+                      onClick={onOpenOtzivC}
                       className="!text-[#FF7A01] !text-[14px] sm:!text-base !font-OpenSans relative -left-3 !font-semibold"
                     >
                       Ответить
@@ -157,7 +158,7 @@ const Otzivi = ({onOpenOtzivC}: {onOpenOtzivC: ()=>void}) => {
                     {km.picksel}
                   </p>
                     {
-                        km.otzivIntoMkn.length == 0 &&  <p className="text-sm text-[#3B4255] font-OpenSans font-semibold mt-3" >Ответить</p>
+                        km.otzivIntoMkn.length == 0 &&  <p className="text-sm text-[#3B4255] font-OpenSans font-semibold mt-3" onClick={onOpenOtzivC} >Ответить</p>
                     }
                     {
                         km.otzivIntoMkn.length !== 0 && <div className="down-up flex flex-row gap-2 items-center mt-3 cursor-pointer">
