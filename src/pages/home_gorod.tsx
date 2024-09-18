@@ -321,14 +321,14 @@ const onMouseOut = () => {
             {selectedCity.cityname}
           </h3>
         </div>
-        <div className="flex flex-col md:flex-row items-center gap-[30px]">
+        <div className="flex flex-col md:flex-row items-center gap-[30px] w-full">
        
 
-          <div className="flex flex-col items-start">
-          <div className="ak-fa flex flex-col md:flex-row gap-1 md:gap-8">
-          <div className="sm:hidden lg:flex items-center w-full md:w-auto">
+          <div className="flex flex-col items-start w-full">
+          <div className="ak-fa flex flex-col md:flex-row gap-1 md:gap-8 w-full">
+            <div className="sm:hidden lg:flex items-center w-full md:w-auto">
             <Discount />
-          </div>
+            </div>
             <Links />
           </div>
            
