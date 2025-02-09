@@ -13,15 +13,15 @@ import { useState } from "react";
 import ZavadeniyaOtzivModal from "./ui/zavadeniyaOtziv/zavadeniyaOtziv";
 
 function App(): JSX.Element {
-  const [openModal , setOpenModal] = useState(false)
+  const [openModal, setOpenModal] = useState(false);
 
   const onClose = () => {
-    setOpenModal(false)
-  }
+    setOpenModal(false);
+  };
 
   const onOpen = () => {
-    setOpenModal(true)
-  }
+    setOpenModal(true);
+  };
 
   const slides = [
     <SwipperCardBottom openOkno={onOpen} />,
@@ -35,30 +35,28 @@ function App(): JSX.Element {
   const location = useLocation();
   const path = location.pathname;
 
-
-  const isCategoryPage = path.startsWith("/category") && !path.includes('/product');
+  const isCategoryPage =
+    path.startsWith("/category") && !path.includes("/product");
 
   return (
     <>
       <Navbar />
 
       <Wrapper>
-    {
-      path !== "/" && (        <div className="bread hidden sm:block mx-4 mt-5 sm:mt-6 mb-6 sm:mb-0 sm:mx-5 2xl:mx-0">
-        <Breadcromb/>
-        </div>)
-    }
+        {path !== "/" && (
+          <div className="bread hidden sm:block mx-4 mt-5 sm:mt-6 mb-6 sm:mb-0 sm:mx-5 2xl:mx-0">
+            <Breadcromb />
+          </div>
+        )}
         <div className="sm:mt-[32px] sm:mx-[20px] 2xl:mx-0">
           <Main_banner />
         </div>
-   
-   {
-    (path !== "/" && isCategoryPage ) && (
-      <div className="bread block sm:hidden mx-4 mt-5 sm:mt-6 mb-6 sm:mb-0 sm:mx-5 2xl:mx-0">
-      <Breadcromb/>
-        </div>
-    )
-   }
+
+        {path !== "/" && isCategoryPage && (
+          <div className="bread block sm:hidden mx-4 mt-5 sm:mt-6 mb-6 sm:mb-0 sm:mx-5 2xl:mx-0">
+            <Breadcromb />
+          </div>
+        )}
 
         {path == "/" && (
           <div className="banner-idk block sm:hidden">
